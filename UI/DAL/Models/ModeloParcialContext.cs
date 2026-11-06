@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Protocols;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-
+using Entity.EFModel;
 namespace DAL.Models;
 
 public partial class ModeloParcialContext : DbContext
