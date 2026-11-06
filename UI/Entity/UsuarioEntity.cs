@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entity
 {
-    public class Usuario
+    public class UsuarioEntity
     {
         public int IdUsuario { get; set; }
         public string NombreUsuario { get; set; }
@@ -13,7 +13,7 @@ namespace Entity
         public string Apellido { get; set; }
         public string Dni { get; set; }
         public string Email { get; set; }
-        public TipoUsuario TipoUsuario { get; set; }
+        public TipoUsuarioEntity TipoUsuario { get; set; }
 
     }
 }

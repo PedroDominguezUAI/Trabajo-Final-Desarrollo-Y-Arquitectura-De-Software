@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Entity
 {
-    public class Evento
+    public class EventoEntity
     {
         public int IdEvento { get; set; }
         public string NombreEvento { get; set; }
         public DateTime FechaEvento { get; set; } 
-        public Estadio Estadio { get; set; }
+        public EstadioEntity Estadio { get; set; }
 
          
     }
