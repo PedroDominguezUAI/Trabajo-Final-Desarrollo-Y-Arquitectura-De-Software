@@ -30,6 +30,7 @@
         {
             dataGridView1 = new DataGridView();
             label1 = new Label();
+            linkLabel1 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -51,11 +52,23 @@
             label1.TabIndex = 1;
             label1.Text = "Prueba traer entradas";
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(35, 23);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(95, 20);
+            linkLabel1.TabIndex = 2;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "ABM Usuario";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(linkLabel1);
             Controls.Add(label1);
             Controls.Add(dataGridView1);
             Name = "Form1";
@@ -70,5 +83,6 @@
 
         private DataGridView dataGridView1;
         private Label label1;
+        private LinkLabel linkLabel1;
     }
 }

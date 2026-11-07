@@ -17,13 +17,23 @@ namespace UI
         }
         public void Actualizar()
         {
-            try {
+            try
+            {
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = entradaBusiness.getAll();
-            } 
-            catch (Exception ex) { 
-                MessageBox.Show(ex.Message); 
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ABMUsuario formAbrir = new ABMUsuario();
+            this.Hide();
+            formAbrir.Show();
+            formAbrir.FormClosed += (s, args) => this.Close();
         }
     }
 }
