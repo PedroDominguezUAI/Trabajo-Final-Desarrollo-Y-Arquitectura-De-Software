@@ -15,5 +15,9 @@ namespace Entity
         public string Email { get; set; }
         public TipoUsuarioEntity TipoUsuario { get; set; }
 
+        public override string ToString()
+        {
+            return this.NombreUsuario;
+        }
     }
 }

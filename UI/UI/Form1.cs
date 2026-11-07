@@ -1,4 +1,5 @@
 using BLL;
+using Entity;
 
 namespace UI
 {
@@ -9,11 +10,24 @@ namespace UI
             InitializeComponent();
         }
         EntradaBusiness entradaBusiness = new EntradaBusiness();
+        UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            try { Actualizar(); }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            try
+            {
+                comboUsuarioAgregar.DataSource = usuarioBusiness.getAll();
+                comboUsuarioAgregar.DisplayMember = "NombreUsuario";
+                comboUsuarioAgregar.ValueMember = "IdUsuario";
+                comboUsuarioModificar.DataSource = usuarioBusiness.getAll();
+                comboUsuarioModificar.DisplayMember = "NombreUsuario";
+                comboUsuarioModificar.ValueMember = "IdUsuario";
+                Actualizar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         public void Actualizar()
         {
@@ -34,6 +48,86 @@ namespace UI
             this.Hide();
             formAbrir.Show();
             formAbrir.FormClosed += (s, args) => this.Close();
+        }
+
+        private void btnAgregarEntrada_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EntradaEntity entrada = new EntradaEntity();
+                entrada.Evento = new EventoEntity { IdEvento = 1 };
+                entrada.Usuario = usuarioBusiness.buscarID(Convert.ToInt32(comboUsuarioAgregar.SelectedValue));
+                entrada.Sector = comboSectorAgregar.Text;
+                entrada.Asiento = txtAsientoAgregar.Text;
+                entrada.Precio = Convert.ToDecimal(txtPrecioAgregar.Text);
+                entradaBusiness.AgregarEntradaBLL(entrada);
+                Actualizar();
+                MessageBox.Show("Se ha agregado correctamente la entrada", "!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnBuscarEntrada_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int IdSearch = Convert.ToInt32(txtIdModificar.Text);
+                EntradaEntity entrada = entradaBusiness.ObtenerIdEntradaBLL(IdSearch);
+                if (entrada.Usuario != null)
+                {
+                    comboUsuarioModificar.SelectedValue = entrada.Usuario.IdUsuario;
+                }
+                else
+                {
+                    comboUsuarioModificar.SelectedIndex = -1;
+                }
+                comboSectorModificar.Text = entrada.Sector;
+                txtAsientoModificar.Text = entrada.Asiento;
+                txtPrecioModificar.Text = Convert.ToString(entrada.Precio);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnModificarEntrada_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EntradaEntity entrada = new EntradaEntity();
+                entrada.IdEntrada = Convert.ToInt32(txtIdModificar.Text);
+                entrada.Evento = new EventoEntity { IdEvento = 1 };
+                entrada.Usuario = usuarioBusiness.buscarID(Convert.ToInt32(comboUsuarioAgregar.SelectedValue));
+                entrada.Sector = comboSectorModificar.Text;
+                entrada.Asiento = txtAsientoModificar.Text;
+                entrada.Precio = Convert.ToDecimal(txtPrecioModificar.Text);
+                entradaBusiness.ModificarEntradaBLL(entrada);
+                Actualizar();
+                MessageBox.Show("Se ha actualizado correctamente la entrada", "!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int IdEliminar = Convert.ToInt32(txtIdEliminar.Text);
+                entradaBusiness.EliminarIDBLL(IdEliminar);
+                Actualizar();
+                MessageBox.Show("Se ha eliminado correctamente la entrada", "!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
