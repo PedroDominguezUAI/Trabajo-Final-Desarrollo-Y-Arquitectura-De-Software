@@ -19,7 +19,7 @@ public partial class Entrada
 
     public DateTime? FechaAsignacion { get; set; }
 
-    public virtual Evento IdEventoNavigation { get; set; } = null!;
+    public virtual Evento? IdEventoNavigation { get; set; } = null!;
 
     public virtual Usuario? IdUsuarioNavigation { get; set; }
 }

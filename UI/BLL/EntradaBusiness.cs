@@ -18,5 +18,54 @@ namespace BLL
                 throw;
             }
         }
+
+        public void AgregarEntradaBLL(EntradaEntity entrada)
+        {
+            try
+            {
+                entrada.FechaAsignacion = DateTime.Now;
+                eDao.AgregarEntrada(entrada);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public EntradaEntity ObtenerIdEntradaBLL(int ID)
+        {
+            try
+            {
+                return eDao.ObtenerIDEntrada(ID);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public void ModificarEntradaBLL(EntradaEntity entrada)
+        {
+            try
+            {
+                eDao.ModificarEntrada(entrada);
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public void EliminarIDBLL(int ID)
+        {
+            try
+            {
+                eDao.EliminarId(ID);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

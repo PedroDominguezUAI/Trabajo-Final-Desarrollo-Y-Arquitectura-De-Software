@@ -30,7 +30,7 @@ namespace Mapper
                     : null
             };
         }
-         
+
         public static Entity.EFModel.Entrada Map(Entity.EntradaEntity entradaEntity)
         {
             if (entradaEntity == null) return null!;
@@ -42,16 +42,10 @@ namespace Mapper
                 Asiento = entradaEntity.Asiento,
                 Precio = entradaEntity.Precio,
                 FechaAsignacion = entradaEntity.FechaAsignacion,
-                
                 IdEvento = entradaEntity.Evento != null ? entradaEntity.Evento.IdEvento : 0,
-                IdEventoNavigation = entradaEntity.Evento != null
-                    ? EventoMapper.Map(entradaEntity.Evento)
-                    : null!,
-                 
                 IdUsuario = entradaEntity.Usuario?.IdUsuario,
-                IdUsuarioNavigation = entradaEntity.Usuario != null
-                    ? UsuarioMapper.Map(entradaEntity.Usuario)
-                    : null
+                IdEventoNavigation = null!,
+                IdUsuarioNavigation = null
             };
         }
         public static List<EntradaEntity> Map (List<Entrada> entradas)

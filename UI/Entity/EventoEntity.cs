@@ -11,6 +11,9 @@ namespace Entity
         public DateTime FechaEvento { get; set; } 
         public EstadioEntity Estadio { get; set; }
 
-         
+        public override string ToString()
+        {
+            return this.NombreEvento;
+        }
     }
 }
