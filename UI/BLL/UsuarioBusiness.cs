@@ -21,6 +21,17 @@ namespace BLL
                 throw;
             }
         }
+        public UsuarioEntity LogIn(string nombreUsuario, string password)
+        {
+            try
+            {
+                return uDAO.LogIn(nombreUsuario, password);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public void eliminarUsuario(int id)
         {
             try

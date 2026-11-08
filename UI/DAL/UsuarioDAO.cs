@@ -49,6 +49,29 @@ namespace DAL
                 throw;
             }
         }
+        public UsuarioEntity LogIn(string nombreUsuario, string password)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                     
+                    Usuario usuario = db.Usuario
+                        .Include(u => u.IdTipoNavigation)
+                        .FirstOrDefault(u => u.NombreUsuario == nombreUsuario && u.Password == password);
+
+                    if (usuario != null)
+                    { 
+                        return UsuarioMapper.Map(usuario);
+                    }  
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public void eliminarUsuario(int id)
         {
             try
