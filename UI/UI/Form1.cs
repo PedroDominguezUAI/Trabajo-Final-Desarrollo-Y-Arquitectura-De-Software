@@ -1,5 +1,6 @@
 using BLL;
 using Entity;
+using Entity.EFModel;
 
 namespace UI
 {
@@ -12,6 +13,8 @@ namespace UI
         EntradaBusiness entradaBusiness = new EntradaBusiness();
         UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
+        EventoBusiness eventoBusiness = new EventoBusiness();
+
         private void Form1_Load(object sender, EventArgs e)
         {
             try
@@ -22,6 +25,17 @@ namespace UI
                 comboUsuarioModificar.DataSource = usuarioBusiness.getAll();
                 comboUsuarioModificar.DisplayMember = "NombreUsuario";
                 comboUsuarioModificar.ValueMember = "IdUsuario";
+
+                List<EventoEntity> eventos = eventoBusiness.ObtenerTodos();
+
+                comboEventoAgregar.DataSource = new List<EventoEntity>(eventos);
+                comboEventoAgregar.DisplayMember = "NombreEvento";
+                comboEventoAgregar.ValueMember = "IdEvento";
+
+                comboEventoModificar.DataSource = new List<EventoEntity>(eventos);
+                comboEventoModificar.DisplayMember = "NombreEvento";
+                comboEventoModificar.ValueMember = "IdEvento";
+
                 Actualizar();
             }
             catch (Exception ex)
@@ -55,7 +69,7 @@ namespace UI
             try
             {
                 EntradaEntity entrada = new EntradaEntity();
-                entrada.Evento = new EventoEntity { IdEvento = 1 };
+                entrada.Evento = (EventoEntity)comboEventoAgregar.SelectedItem;
                 entrada.Usuario = usuarioBusiness.buscarID(Convert.ToInt32(comboUsuarioAgregar.SelectedValue));
                 entrada.Sector = comboSectorAgregar.Text;
                 entrada.Asiento = txtAsientoAgregar.Text;
@@ -76,6 +90,12 @@ namespace UI
             {
                 int IdSearch = Convert.ToInt32(txtIdModificar.Text);
                 EntradaEntity entrada = entradaBusiness.ObtenerIdEntradaBLL(IdSearch);
+
+                if (entrada.Evento != null)
+                {
+                    comboEventoModificar.SelectedValue = entrada.Evento.IdEvento;
+                }
+
                 if (entrada.Usuario != null)
                 {
                     comboUsuarioModificar.SelectedValue = entrada.Usuario.IdUsuario;
@@ -100,8 +120,8 @@ namespace UI
             {
                 EntradaEntity entrada = new EntradaEntity();
                 entrada.IdEntrada = Convert.ToInt32(txtIdModificar.Text);
-                entrada.Evento = new EventoEntity { IdEvento = 1 };
-                entrada.Usuario = usuarioBusiness.buscarID(Convert.ToInt32(comboUsuarioAgregar.SelectedValue));
+                entrada.Evento = (EventoEntity)comboEventoModificar.SelectedItem;
+                entrada.Usuario = usuarioBusiness.buscarID(Convert.ToInt32(comboUsuarioModificar.SelectedValue));
                 entrada.Sector = comboSectorModificar.Text;
                 entrada.Asiento = txtAsientoModificar.Text;
                 entrada.Precio = Convert.ToDecimal(txtPrecioModificar.Text);
