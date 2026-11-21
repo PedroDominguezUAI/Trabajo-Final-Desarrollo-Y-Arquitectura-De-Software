@@ -1,8 +1,10 @@
 ﻿using DAL;
 using Entity;
+using Entity.EFModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Transactions;
 
 namespace BLL
 {
@@ -23,8 +25,24 @@ namespace BLL
         {
             try
             {
-                entrada.FechaAsignacion = DateTime.Now;
-                eDao.AgregarEntrada(entrada);
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    if (entrada.Precio < 10)
+                    {
+                        throw new Exception("El precio debe ser mayor a 10 dolares");
+                    }
+                    if (entrada.Precio > 10000000)
+                    {
+                        throw new Exception("Una entrada no puede valer mas de 10 millones de dolares");
+                    }
+                    if (entrada.Asiento.Length > 6)
+                    {
+                        throw new Exception("Los caracteres maximos para un asiento son 6");
+                    }
+                    entrada.FechaAsignacion = DateTime.Now;
+                    eDao.AgregarEntrada(entrada);
+                    scope.Complete();
+                }
             }
             catch (Exception ex)
             {
@@ -36,7 +54,14 @@ namespace BLL
         {
             try
             {
-                return eDao.ObtenerIDEntrada(ID);
+                if (eDao.EncontrarExistencia(ID))
+                {
+                    return eDao.ObtenerIDEntrada(ID);
+                }
+                else
+                {
+                    throw new Exception("Debe existir el usuario, Prueba otro ID");
+                }
             }
             catch (Exception ex)
             {
@@ -48,7 +73,23 @@ namespace BLL
         {
             try
             {
-                eDao.ModificarEntrada(entrada);
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    if (entrada.Precio < 10)
+                    {
+                        throw new Exception("El precio debe ser mayor a 10 dolares");
+                    }
+                    if (entrada.Precio > 10000000)
+                    {
+                        throw new Exception("Una entrada no puede valer mas de 10 millones de dolares");
+                    }
+                    if (entrada.Asiento.Length > 6)
+                    {
+                        throw new Exception("Los caracteres maximos para un asiento son 6");
+                    }
+                    eDao.ModificarEntrada(entrada);
+                    scope.Complete();
+                }
             }
             catch(Exception ex)
             {
@@ -60,7 +101,18 @@ namespace BLL
         {
             try
             {
-                eDao.EliminarId(ID);
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    if (eDao.EncontrarExistencia(ID))
+                    {
+                        eDao.EliminarId(ID);
+                    }
+                    else
+                    {
+                        throw new Exception("Debe existir el usuario para poder eliminarlo, Prueba otro ID");
+                    }
+                    scope.Complete();
+                }
             }
             catch (Exception ex)
             {

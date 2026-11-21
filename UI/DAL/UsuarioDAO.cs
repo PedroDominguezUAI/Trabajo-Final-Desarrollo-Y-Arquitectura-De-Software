@@ -123,10 +123,18 @@ namespace DAL
         {
             try
             {
-                using(var db = new ModeloParcialContext())
+                using (var db = new ModeloParcialContext())
                 {
-                    List<Usuario>  usuarios = db.Usuario.ToList();
-                    return UsuarioMapper.Map(usuarios);
+                    List<Usuario> usuarios = db.Usuario.ToList();
+                    List<Usuario> usuarioClientes = new List<Usuario>();
+                    foreach (Usuario usuario in usuarios)
+                    {
+                        if (usuario.IdTipo == 2)
+                        {
+                            usuarioClientes.Add(usuario);
+                        }
+                    }
+                    return UsuarioMapper.Map(usuarioClientes);
                 }
 
             }

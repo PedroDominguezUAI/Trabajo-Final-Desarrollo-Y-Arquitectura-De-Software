@@ -295,6 +295,7 @@
             // 
             // comboEventoAgregar
             // 
+            comboEventoAgregar.DropDownStyle = ComboBoxStyle.DropDownList;
             comboEventoAgregar.FormattingEnabled = true;
             comboEventoAgregar.Items.AddRange(new object[] { "nicki minaj", "nicki nicole", "sabrina carpenter" });
             comboEventoAgregar.Location = new Point(12, 153);
@@ -304,14 +305,16 @@
             // 
             // comboUsuarioAgregar
             // 
+            comboUsuarioAgregar.DropDownStyle = ComboBoxStyle.DropDownList;
             comboUsuarioAgregar.FormattingEnabled = true;
-            comboUsuarioAgregar.Location = new Point(12, 214);
+            comboUsuarioAgregar.Location = new Point(12, 218);
             comboUsuarioAgregar.Name = "comboUsuarioAgregar";
             comboUsuarioAgregar.Size = new Size(244, 23);
             comboUsuarioAgregar.TabIndex = 11;
             // 
             // comboSectorAgregar
             // 
+            comboSectorAgregar.DropDownStyle = ComboBoxStyle.DropDownList;
             comboSectorAgregar.FormattingEnabled = true;
             comboSectorAgregar.Items.AddRange(new object[] { "Platea alta sur", "Platea media sur", "Platea alta sur", "Platea alta norte", "Platea media norte", "Platea alta norte", "Campo" });
             comboSectorAgregar.Location = new Point(12, 274);
@@ -335,6 +338,7 @@
             // 
             // comboUsuarioModificar
             // 
+            comboUsuarioModificar.DropDownStyle = ComboBoxStyle.DropDownList;
             comboUsuarioModificar.FormattingEnabled = true;
             comboUsuarioModificar.Location = new Point(280, 300);
             comboUsuarioModificar.Name = "comboUsuarioModificar";
@@ -343,6 +347,7 @@
             // 
             // comboSectorModificar
             // 
+            comboSectorModificar.DropDownStyle = ComboBoxStyle.DropDownList;
             comboSectorModificar.FormattingEnabled = true;
             comboSectorModificar.Items.AddRange(new object[] { "Platea alta sur", "Platea media sur", "Platea alta sur", "Platea alta norte", "Platea media norte", "Platea alta norte", "Campo" });
             comboSectorModificar.Location = new Point(280, 360);
@@ -366,6 +371,7 @@
             // 
             // comboEventoModificar
             // 
+            comboEventoModificar.DropDownStyle = ComboBoxStyle.DropDownList;
             comboEventoModificar.FormattingEnabled = true;
             comboEventoModificar.Location = new Point(280, 239);
             comboEventoModificar.Name = "comboEventoModificar";
