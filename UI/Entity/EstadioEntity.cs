@@ -11,6 +11,9 @@ namespace Entity
         public string Direccion { get; set; }
         public int Capacidad { get; set; }
 
-       
+        public override string ToString()
+        {
+            return this.Nombre;
+        }
     }
 }

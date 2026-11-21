@@ -118,6 +118,19 @@ namespace BLL
                 throw;
             }
         }
+
+        // Empieza el apartado de ESTADIO
+        public List<EstadioEntity> ObtenerEstadios()
+        {
+            try
+            {
+                return eventoDao.ObtenerEstadios();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 
 }

@@ -61,6 +61,7 @@
             txtAsientoModificar = new TextBox();
             txtPrecioModificar = new TextBox();
             comboEventoModificar = new ComboBox();
+            linkLabel2 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -372,11 +373,23 @@
             comboEventoModificar.Size = new Size(244, 23);
             comboEventoModificar.TabIndex = 25;
             // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Location = new Point(1219, 72);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(72, 15);
+            linkLabel2.TabIndex = 35;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "ABM Evento";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1309, 582);
+            Controls.Add(linkLabel2);
             Controls.Add(button1);
             Controls.Add(txtIdEliminar);
             Controls.Add(label15);
@@ -454,5 +467,6 @@
         private TextBox txtAsientoModificar;
         private TextBox txtPrecioModificar;
         private ComboBox comboEventoModificar;
+        private LinkLabel linkLabel2;
     }
 }

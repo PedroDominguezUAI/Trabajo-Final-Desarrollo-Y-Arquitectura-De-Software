@@ -110,5 +110,29 @@ namespace DAL
                 throw;
             }
         }
+
+        // Empieza el apartado de ESTADIO
+        public List<EstadioEntity> ObtenerEstadios()
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    return db.Estadio
+                             .Select(s => new EstadioEntity
+                             {
+                                 IdEstadio = s.IdEstadio,
+                                 Nombre = s.Nombre,
+                                 Direccion = s.Direccion,
+                                 Capacidad = s.Capacidad
+                             })
+                             .ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
