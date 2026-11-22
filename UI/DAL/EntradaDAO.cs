@@ -50,6 +50,29 @@ namespace DAL
             }
         }
 
+        public bool EncontrarExistencia(int ID)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    Entrada? entrada = db.Entrada.FirstOrDefault(E => E.IdEntrada == ID);
+                    if (entrada != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public EntradaEntity ObtenerIDEntrada(int ID)
         {
             try

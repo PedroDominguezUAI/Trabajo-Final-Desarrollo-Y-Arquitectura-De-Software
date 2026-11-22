@@ -36,6 +36,8 @@ namespace UI
                 comboEventoModificar.DisplayMember = "NombreEvento";
                 comboEventoModificar.ValueMember = "IdEvento";
 
+                comboSectorAgregar.SelectedIndex = 0;
+                comboSectorModificar.SelectedIndex = 0;
                 Actualizar();
             }
             catch (Exception ex)
