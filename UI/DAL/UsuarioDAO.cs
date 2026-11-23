@@ -12,6 +12,95 @@ namespace DAL
 {
     public class UsuarioDAO
     {
+        public bool MismoEmail(string Email)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    Usuario? usuario = db.Usuario.FirstOrDefault(U => U.Email == Email);
+                    if (usuario != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool DetectarNombreUsuarioConid(UsuarioEntity usuario)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    Usuario? usuarioEncontrado = db.Usuario.FirstOrDefault(U => U.IdUsuario != usuario.IdUsuario && U.NombreUsuario == usuario.NombreUsuario);
+                    if (usuarioEncontrado != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public bool EncontrarDNIConId(UsuarioEntity usuario)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    Usuario? usuarioEncontrado = db.Usuario.FirstOrDefault(U => U.IdUsuario != usuario.IdUsuario && U.Dni == usuario.Dni);
+                    if (usuarioEncontrado != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public bool MismoEmailConId(UsuarioEntity usuario)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    Usuario? usuarioEncontrado = db.Usuario.FirstOrDefault(U => U.IdUsuario != usuario.IdUsuario && U.Email == usuario.Email);
+                    if (usuarioEncontrado != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public void agregarUsuario(UsuarioEntity usuario)
         {
             try
@@ -24,6 +113,52 @@ namespace DAL
                 }
             }
             catch(Exception ex) 
+            {
+                throw;
+            }
+        }
+
+        public bool EncontrarDNI(string Dni)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    Usuario? usuario = db.Usuario.FirstOrDefault(U => U.Dni == Dni);
+                    if (usuario != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool DetectarNombreUsuario(string nombreUsuario)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    Usuario? usuario = db.Usuario.FirstOrDefault(U => U.NombreUsuario == nombreUsuario);
+                    if (usuario != null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
             {
                 throw;
             }

@@ -43,19 +43,34 @@ namespace UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UsuarioEntity usuario = new UsuarioEntity();
-            TipoUsuarioEntity tipoUsuario = new TipoUsuarioEntity();
-            usuario.NombreUsuario = textBox1.Text;
-            usuario.Password = textBox2.Text;
-            usuario.Nombre = textBox4.Text;
-            usuario.Apellido = textBox5.Text;
-            usuario.Dni = textBox6.Text;
-            usuario.Email = textBox7.Text;
-            tipoUsuario.IdTipo = 2;
-            usuario.TipoUsuario = tipoUsuario;
-            uBusieness.agregarUsuario(usuario);
-            Actualizar();
-
+            try
+            {
+                UsuarioEntity usuario = new UsuarioEntity();
+                TipoUsuarioEntity tipoUsuario = new TipoUsuarioEntity();
+                usuario.NombreUsuario = textBox1.Text;
+                usuario.Password = textBox2.Text;
+                string RepetirContraseña = textBox3.Text;
+                usuario.Nombre = textBox4.Text;
+                usuario.Apellido = textBox5.Text;
+                usuario.Dni = textBox6.Text;
+                usuario.Email = textBox7.Text;
+                tipoUsuario.IdTipo = 2;
+                usuario.TipoUsuario = tipoUsuario;
+                uBusieness.agregarUsuario(usuario, RepetirContraseña);
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                textBox5.Text = "";
+                textBox6.Text = "";
+                textBox7.Text = "";
+                MessageBox.Show("Se ha agregado correctamente el usuario a la tabla");
+                Actualizar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -67,6 +82,7 @@ namespace UI
         {
             try
             {
+                button3.Enabled = false;
                 Actualizar();
             }
             catch (Exception ex)
@@ -121,6 +137,14 @@ namespace UI
                     };
                     uBusieness.modificarUsuario(usuarioAModificar);
                     MessageBox.Show("Usuario modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    textBox15.Text = "";
+                    textBox14.Text = "";
+                    textBox12.Text = "";
+                    textBox9.Text = "";
+                    textBox11.Text = "";
+                    textBox10.Text = "";
+                    textBox13.Text = "";
+                    button3.Enabled = false;
                     Actualizar();
                 }
                 else
@@ -153,6 +177,7 @@ namespace UI
                         textBox9.Text = usuarioAModificar.Email;
                         textBox11.Text = usuarioAModificar.Apellido;
                         textBox10.Text = usuarioAModificar.Dni;
+                        button3.Enabled = true;
                     }
                     else
                     {
