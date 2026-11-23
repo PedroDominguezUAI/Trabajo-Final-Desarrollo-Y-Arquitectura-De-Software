@@ -48,7 +48,7 @@ namespace UI
                     else if (usuarioLogueado.TipoUsuario.Descripcion == "Cliente")
                     {
                         MessageBox.Show($"Bienvenido Cliente {usuarioLogueado.Nombre}", "Acceso concedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        PantallaCliente form2 = new PantallaCliente();
+                        PantallaCliente form2 = new PantallaCliente(usuarioLogueado);
                         form2.FormClosed += (s, args) => this.Close();
                         form2.Show();
                     }
