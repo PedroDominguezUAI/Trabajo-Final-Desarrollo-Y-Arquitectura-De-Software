@@ -25,9 +25,9 @@ namespace UI
                 UsuarioEntity usuarioLogueado = uBusieness.LogIn(textBox1.Text, textBox2.Text);
 
                 if (usuarioLogueado != null)
-                { 
+                {
                     if (usuarioLogueado.TipoUsuario.Descripcion == "Admin")
-                    { 
+                    {
                         MessageBox.Show($"Bienvenido Administrador {usuarioLogueado.Nombre}");
                         Form1 form1 = new Form1();
                         form1.FormClosed += (s, args) => this.Close();
@@ -35,13 +35,13 @@ namespace UI
                     }
                     else if (usuarioLogueado.TipoUsuario.Descripcion == "Cliente")
                     {
+                        MessageBox.Show($"Bienvenido Cliente {usuarioLogueado.Nombre}");
                         PantallaCliente form2 = new PantallaCliente();
                         form2.FormClosed += (s, args) => this.Close();
                         form2.Show();
-                        MessageBox.Show($"Bienvenido Cliente {usuarioLogueado.Nombre}");
                     }
 
-                    this.Hide(); 
+                    this.Hide();
                 }
                 else
                 {
@@ -52,6 +52,11 @@ namespace UI
             {
                 MessageBox.Show("Error al intentar iniciar sesión: " + ex.Message);
             }
+        }
+
+        private void LogIn_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

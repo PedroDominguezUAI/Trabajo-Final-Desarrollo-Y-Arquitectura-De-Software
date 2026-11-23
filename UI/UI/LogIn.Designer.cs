@@ -59,6 +59,7 @@
             // 
             textBox2.Location = new Point(280, 189);
             textBox2.Name = "textBox2";
+            textBox2.PasswordChar = '*';
             textBox2.PlaceholderText = "************";
             textBox2.Size = new Size(491, 27);
             textBox2.TabIndex = 10;
@@ -92,6 +93,7 @@
             // 
             // LogIn
             // 
+            AcceptButton = button1;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1055, 469);
@@ -103,6 +105,7 @@
             Controls.Add(label1);
             Name = "LogIn";
             Text = "LogIn";
+            Load += LogIn_Load;
             ResumeLayout(false);
             PerformLayout();
         }

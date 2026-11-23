@@ -68,6 +68,9 @@
             button4 = new Button();
             textBox13 = new TextBox();
             label17 = new Label();
+            linkLabel3 = new LinkLabel();
+            linkLabel2 = new LinkLabel();
+            linkLabel4 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -76,10 +79,10 @@
             linkLabel1.AutoSize = true;
             linkLabel1.Location = new Point(15, 9);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(80, 20);
+            linkLabel1.Size = new Size(96, 20);
             linkLabel1.TabIndex = 0;
             linkLabel1.TabStop = true;
-            linkLabel1.Text = "Main Form";
+            linkLabel1.Text = "ABM Entrada";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // label1
@@ -409,11 +412,47 @@
             label17.TabIndex = 39;
             label17.Text = "ID:";
             // 
+            // linkLabel3
+            // 
+            linkLabel3.AutoSize = true;
+            linkLabel3.Location = new Point(442, 9);
+            linkLabel3.Name = "linkLabel3";
+            linkLabel3.Size = new Size(94, 20);
+            linkLabel3.TabIndex = 63;
+            linkLabel3.TabStop = true;
+            linkLabel3.Text = "ABM Estadio";
+            linkLabel3.LinkClicked += linkLabel3_LinkClicked;
+            // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Location = new Point(297, 9);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(90, 20);
+            linkLabel2.TabIndex = 62;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "ABM Evento";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
+            // linkLabel4
+            // 
+            linkLabel4.AutoSize = true;
+            linkLabel4.Location = new Point(144, 9);
+            linkLabel4.Name = "linkLabel4";
+            linkLabel4.Size = new Size(95, 20);
+            linkLabel4.TabIndex = 61;
+            linkLabel4.TabStop = true;
+            linkLabel4.Text = "ABM Usuario";
+            linkLabel4.LinkClicked += linkLabel4_LinkClicked;
+            // 
             // ABMUsuario
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1691, 708);
+            Controls.Add(linkLabel3);
+            Controls.Add(linkLabel2);
+            Controls.Add(linkLabel4);
             Controls.Add(button4);
             Controls.Add(textBox13);
             Controls.Add(label17);
@@ -504,5 +543,8 @@
         private Button button4;
         private TextBox textBox13;
         private Label label17;
+        private LinkLabel linkLabel3;
+        private LinkLabel linkLabel2;
+        private LinkLabel linkLabel4;
     }
 }

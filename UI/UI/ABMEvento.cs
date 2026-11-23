@@ -17,6 +17,7 @@ namespace UI
         public ABMEvento()
         {
             InitializeComponent();
+            UiTheme.AplicarEstiloNavLink(this);
         }
 
         private void ABMEvento_Load(object sender, EventArgs e)
@@ -56,6 +57,7 @@ namespace UI
 
         private void linkVolver_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            //Entrada
             try
             {
                 Form1 formAbrir = new Form1();
@@ -160,6 +162,54 @@ namespace UI
                 Actualizar();
                 txtIdEliminarEvento.Clear();
                 MessageBox.Show("Evento eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //ESTADIO
+            try
+            {
+                ABMEstadio formAbrir = new ABMEstadio();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //USUARIO
+            try
+            {
+                ABMUsuario formAbrir = new ABMUsuario();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //EVENTO
+            try
+            {
+                ABMEvento formAbrir = new ABMEvento();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
             }
             catch (Exception ex)
             {

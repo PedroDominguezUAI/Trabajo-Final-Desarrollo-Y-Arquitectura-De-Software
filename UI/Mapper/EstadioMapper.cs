@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity.EFModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -31,6 +32,19 @@ namespace Mapper
                 Direccion = estadioEntity.Direccion,
                 Capacidad = estadioEntity.Capacidad
             };
+        }
+        public static List<Entity.EstadioEntity> Map(List<Entity.EFModel.Estadio> listaEstadiosEF)
+        {
+            if (listaEstadiosEF == null) return new List<Entity.EstadioEntity>();
+
+            return listaEstadiosEF.Select(e => Map(e)).ToList();
+        }
+
+        public static List<Entity.EFModel.Estadio> Map(List<Entity.EstadioEntity> listaEstadiosEntity)
+        {
+            if (listaEstadiosEntity == null) return new List<Estadio>();
+
+            return listaEstadiosEntity.Select(e => Map(e)).ToList();
         }
     }
 }

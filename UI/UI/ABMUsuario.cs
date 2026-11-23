@@ -16,15 +16,24 @@ namespace UI
         public ABMUsuario()
         {
             InitializeComponent();
+            UiTheme.AplicarEstiloNavLink(this);
         }
         UsuarioBusiness uBusieness = new UsuarioBusiness();
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form1 formAbrir = new Form1();
-            this.Hide();
-            formAbrir.Show();
-            formAbrir.FormClosed += (s, args) => this.Close();
+            //Entrada
+            try
+            {
+                Form1 formAbrir = new Form1();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
@@ -96,10 +105,10 @@ namespace UI
         {
             try
             {
-                
+
                 if (int.TryParse(textBox13.Text, out int idModificar))
                 {
-                     
+
                     UsuarioEntity usuarioAModificar = new UsuarioEntity
                     {
                         IdUsuario = idModificar,
@@ -109,8 +118,8 @@ namespace UI
                         Email = textBox9.Text,
                         Apellido = textBox11.Text,
                         Dni = textBox10.Text
-                    }; 
-                    uBusieness.modificarUsuario(usuarioAModificar); 
+                    };
+                    uBusieness.modificarUsuario(usuarioAModificar);
                     MessageBox.Show("Usuario modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Actualizar();
                 }
@@ -129,15 +138,15 @@ namespace UI
         {
             try
             {
-                 
+
                 if (int.TryParse(textBox13.Text, out int idBuscado))
                 {
-                     
+
                     UsuarioEntity usuarioAModificar = uBusieness.buscarID(idBuscado);
 
-                         
+
                     if (usuarioAModificar != null)
-                    { 
+                    {
                         textBox15.Text = usuarioAModificar.NombreUsuario;
                         textBox14.Text = usuarioAModificar.Password;
                         textBox12.Text = usuarioAModificar.Nombre;
@@ -159,6 +168,55 @@ namespace UI
             {
                 MessageBox.Show("Error al intentar buscar el usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //USUARIO
+            try
+            {
+                ABMUsuario formAbrir = new ABMUsuario();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //Evento
+            try
+            {
+                ABMEvento formAbrir = new ABMEvento();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //ESTADIO
+            try
+            {
+                ABMEstadio formAbrir = new ABMEstadio();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

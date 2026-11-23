@@ -9,6 +9,7 @@ namespace UI
         public Form1()
         {
             InitializeComponent();
+            UiTheme.AplicarEstiloNavLink(this);
         }
         EntradaBusiness entradaBusiness = new EntradaBusiness();
         UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
@@ -60,10 +61,18 @@ namespace UI
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ABMUsuario formAbrir = new ABMUsuario();
-            this.Hide();
-            formAbrir.Show();
-            formAbrir.FormClosed += (s, args) => this.Close();
+            //USUARIO
+            try
+            {
+                ABMUsuario formAbrir = new ABMUsuario();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnAgregarEntrada_Click(object sender, EventArgs e)
@@ -154,9 +163,42 @@ namespace UI
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            //EVENTO
             try
             {
                 ABMEvento formAbrir = new ABMEvento();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkVolver_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //Entrada
+            try
+            {
+                Form1 formAbrir = new Form1();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //Estadio
+            try
+            {
+                ABMEstadio formAbrir = new ABMEstadio();
                 this.Hide();
                 formAbrir.Show();
                 formAbrir.FormClosed += (s, args) => this.Close();
