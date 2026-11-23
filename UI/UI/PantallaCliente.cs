@@ -14,5 +14,10 @@ namespace UI
         {
             InitializeComponent();
         }
+
+        private void PantallaCliente_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

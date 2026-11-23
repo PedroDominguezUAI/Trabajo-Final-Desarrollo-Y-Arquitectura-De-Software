@@ -37,6 +37,7 @@
             ClientSize = new Size(807, 458);
             Name = "PantallaCliente";
             Text = "PantallaCliente";
+            Load += PantallaCliente_Load;
             ResumeLayout(false);
         }
 

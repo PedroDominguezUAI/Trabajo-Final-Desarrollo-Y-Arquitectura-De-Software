@@ -16,26 +16,38 @@ namespace UI
         {
             InitializeComponent();
         }
+
         UsuarioBusiness uBusieness = new UsuarioBusiness();
+
+        private void LogIn_Load(object sender, EventArgs e)
+        {
+            UiTheme.AplicarTemaLogin(this);
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
+                {
+                    MessageBox.Show("Por favor, complete usuario y contraseña.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 UsuarioEntity usuarioLogueado = uBusieness.LogIn(textBox1.Text, textBox2.Text);
 
                 if (usuarioLogueado != null)
                 {
                     if (usuarioLogueado.TipoUsuario.Descripcion == "Admin")
                     {
-                        MessageBox.Show($"Bienvenido Administrador {usuarioLogueado.Nombre}");
+                        MessageBox.Show($"Bienvenido Administrador {usuarioLogueado.Nombre}", "Acceso concedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Form1 form1 = new Form1();
                         form1.FormClosed += (s, args) => this.Close();
                         form1.Show();
                     }
                     else if (usuarioLogueado.TipoUsuario.Descripcion == "Cliente")
                     {
-                        MessageBox.Show($"Bienvenido Cliente {usuarioLogueado.Nombre}");
+                        MessageBox.Show($"Bienvenido Cliente {usuarioLogueado.Nombre}", "Acceso concedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         PantallaCliente form2 = new PantallaCliente();
                         form2.FormClosed += (s, args) => this.Close();
                         form2.Show();
@@ -50,13 +62,8 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al intentar iniciar sesión: " + ex.Message);
+                MessageBox.Show("Error al intentar iniciar sesión: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void LogIn_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

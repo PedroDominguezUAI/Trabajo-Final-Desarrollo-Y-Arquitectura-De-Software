@@ -20,6 +20,7 @@ namespace UI
             try
             {
                 UiTheme.AplicarTema(this, "ABM Entrada");
+                dataGridView1.CellClick += dataGridView1_CellClick;
 
                 comboUsuarioAgregar.DataSource = usuarioBusiness.getAll();
                 comboUsuarioAgregar.DisplayMember = "NombreUsuario";
@@ -48,6 +49,17 @@ namespace UI
             }
         }
 
+        private void dataGridView1_CellClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                string id = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()!;
+                txtIdModificar.Text = id;
+                txtIdEliminar.Text = id;
+                btnBuscarEntrada_Click(sender!, EventArgs.Empty);
+            }
+        }
+
         public void Actualizar()
         {
             try
@@ -63,7 +75,6 @@ namespace UI
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //USUARIO
             try
             {
                 ABMUsuario formAbrir = new ABMUsuario();
@@ -82,14 +93,16 @@ namespace UI
             try
             {
                 EntradaEntity entrada = new EntradaEntity();
-                entrada.Evento = (EventoEntity)comboEventoAgregar.SelectedItem;
+                entrada.Evento = (EventoEntity)comboEventoAgregar.SelectedItem!;
                 entrada.Usuario = usuarioBusiness.buscarID(Convert.ToInt32(comboUsuarioAgregar.SelectedValue));
                 entrada.Sector = comboSectorAgregar.Text;
                 entrada.Asiento = txtAsientoAgregar.Text;
                 entrada.Precio = Convert.ToDecimal(txtPrecioAgregar.Text);
                 entradaBusiness.AgregarEntradaBLL(entrada);
                 Actualizar();
-                MessageBox.Show("Se ha agregado correctamente la entrada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtAsientoAgregar.Clear();
+                txtPrecioAgregar.Clear();
+                MessageBox.Show("Entrada agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -101,22 +114,27 @@ namespace UI
         {
             try
             {
-                int IdSearch = Convert.ToInt32(txtIdModificar.Text);
+                if (!int.TryParse(txtIdModificar.Text, out int IdSearch))
+                {
+                    MessageBox.Show("Ingrese un ID numérico válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 EntradaEntity entrada = entradaBusiness.ObtenerIdEntradaBLL(IdSearch);
+                if (entrada == null)
+                {
+                    MessageBox.Show("No se encontró ninguna entrada con ese ID.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 if (entrada.Evento != null)
-                {
                     comboEventoModificar.SelectedValue = entrada.Evento.IdEvento;
-                }
 
                 if (entrada.Usuario != null)
-                {
                     comboUsuarioModificar.SelectedValue = entrada.Usuario.IdUsuario;
-                }
                 else
-                {
                     comboUsuarioModificar.SelectedIndex = -1;
-                }
+
                 comboSectorModificar.Text = entrada.Sector;
                 txtAsientoModificar.Text = entrada.Asiento;
                 txtPrecioModificar.Text = Convert.ToString(entrada.Precio);
@@ -131,16 +149,22 @@ namespace UI
         {
             try
             {
+                if (!int.TryParse(txtIdModificar.Text, out int idModificar))
+                {
+                    MessageBox.Show("Ingrese un ID numérico válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 EntradaEntity entrada = new EntradaEntity();
-                entrada.IdEntrada = Convert.ToInt32(txtIdModificar.Text);
-                entrada.Evento = (EventoEntity)comboEventoModificar.SelectedItem;
+                entrada.IdEntrada = idModificar;
+                entrada.Evento = (EventoEntity)comboEventoModificar.SelectedItem!;
                 entrada.Usuario = usuarioBusiness.buscarID(Convert.ToInt32(comboUsuarioModificar.SelectedValue));
                 entrada.Sector = comboSectorModificar.Text;
                 entrada.Asiento = txtAsientoModificar.Text;
                 entrada.Precio = Convert.ToDecimal(txtPrecioModificar.Text);
                 entradaBusiness.ModificarEntradaBLL(entrada);
                 Actualizar();
-                MessageBox.Show("Se ha actualizado correctamente la entrada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Entrada actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -152,10 +176,20 @@ namespace UI
         {
             try
             {
-                int IdEliminar = Convert.ToInt32(txtIdEliminar.Text);
+                if (!int.TryParse(txtIdEliminar.Text, out int IdEliminar))
+                {
+                    MessageBox.Show("Ingrese un ID numérico válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var confirmar = MessageBox.Show($"¿Seguro que desea eliminar la entrada ID {IdEliminar}?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmar != DialogResult.Yes) return;
+
                 entradaBusiness.EliminarIDBLL(IdEliminar);
                 Actualizar();
-                MessageBox.Show("Se ha eliminado correctamente la entrada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtIdEliminar.Clear();
+                txtIdModificar.Clear();
+                MessageBox.Show("Entrada eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -165,7 +199,6 @@ namespace UI
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //EVENTO
             try
             {
                 ABMEvento formAbrir = new ABMEvento();
@@ -181,13 +214,11 @@ namespace UI
 
         private void linkVolver_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Entrada (ya estamos acá, solo refrescamos)
             Actualizar();
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Estadio
             try
             {
                 ABMEstadio formAbrir = new ABMEstadio();

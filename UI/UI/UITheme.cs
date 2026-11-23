@@ -162,5 +162,64 @@ namespace UI
             path.CloseAllFigures();
             ctrl.Region = new Region(path);
         }
+
+        public static void AplicarTemaLogin(Form form)
+        {
+            Color fondoApp = Color.FromArgb(241, 245, 249);
+            Color navbarColor = Color.FromArgb(30, 41, 59);
+            Color textoOscuro = Color.FromArgb(30, 41, 59);
+            Color primario = Color.FromArgb(37, 99, 235);
+            Color primarioHover = Color.FromArgb(29, 78, 216);
+
+            form.BackColor = fondoApp;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.FormBorderStyle = FormBorderStyle.FixedSingle;
+            form.MaximizeBox = false;
+            form.Text = "Sistema de Entradas - Iniciar Sesión";
+
+            foreach (Control ctrl in form.Controls)
+            {
+                if (ctrl is Panel pnl)
+                {
+                    if (pnl.Dock == DockStyle.Top)
+                    {
+                        pnl.BackColor = navbarColor;
+                        foreach (Control hijo in pnl.Controls)
+                            if (hijo is Label lblHeader)
+                                lblHeader.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        pnl.BackColor = Color.White;
+                        RedondearControl(pnl, 14);
+
+                        foreach (Control hijo in pnl.Controls)
+                        {
+                            if (hijo is Label lbl)
+                            {
+                                lbl.ForeColor = textoOscuro;
+                                if (lbl.Font.Size >= 14)
+                                    lbl.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+                                else
+                                    lbl.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
+                            }
+
+                            if (hijo is Button btn)
+                            {
+                                btn.FlatStyle = FlatStyle.Flat;
+                                btn.FlatAppearance.BorderSize = 0;
+                                btn.BackColor = primario;
+                                btn.ForeColor = Color.White;
+                                btn.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+                                btn.Cursor = Cursors.Hand;
+                                btn.MouseEnter += (s, e) => btn.BackColor = primarioHover;
+                                btn.MouseLeave += (s, e) => btn.BackColor = primario;
+                                RedondearControl(btn, 10);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
