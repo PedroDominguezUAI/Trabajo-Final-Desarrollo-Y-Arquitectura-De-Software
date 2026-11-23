@@ -2,15 +2,8 @@
 {
     partial class Form1
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,14 +15,14 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            panel1 = new Panel();
+            linkVolver = new LinkLabel();
             linkLabel1 = new LinkLabel();
+            linkLabel2 = new LinkLabel();
+            linkLabel3 = new LinkLabel();
+            dataGridView1 = new DataGridView();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -61,347 +54,57 @@
             txtAsientoModificar = new TextBox();
             txtPrecioModificar = new TextBox();
             comboEventoModificar = new ComboBox();
-            linkLabel2 = new LinkLabel();
-            linkLabel3 = new LinkLabel();
-            linkVolver = new LinkLabel();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // panel1
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(923, 119);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(557, 645);
-            dataGridView1.TabIndex = 0;
+            panel1.BackColor = Color.FromArgb(30, 41, 59);
+            panel1.Controls.Add(linkVolver);
+            panel1.Controls.Add(linkLabel1);
+            panel1.Controls.Add(linkLabel2);
+            panel1.Controls.Add(linkLabel3);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1280, 45);
+            panel1.TabIndex = 64;
+            // 
+            // linkVolver
+            // 
+            linkVolver.AutoSize = true;
+            linkVolver.BackColor = Color.Transparent;
+            linkVolver.LinkColor = SystemColors.ControlLightLight;
+            linkVolver.Location = new Point(30, 14);
+            linkVolver.Name = "linkVolver";
+            linkVolver.Size = new Size(76, 15);
+            linkVolver.TabIndex = 60;
+            linkVolver.TabStop = true;
+            linkVolver.Text = "ABM Entrada";
+            linkVolver.LinkClicked += linkVolver_LinkClicked;
             // 
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(193, 45);
+            linkLabel1.BackColor = Color.Transparent;
+            linkLabel1.LinkColor = SystemColors.ControlLightLight;
+            linkLabel1.Location = new Point(165, 14);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(95, 20);
+            linkLabel1.Size = new Size(76, 15);
             linkLabel1.TabIndex = 2;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "ABM Usuario";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label1.Location = new Point(14, 119);
-            label1.Name = "label1";
-            label1.Size = new Size(241, 37);
-            label1.TabIndex = 3;
-            label1.Text = "Agregar entradas";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label2.Location = new Point(14, 175);
-            label2.Name = "label2";
-            label2.Size = new Size(173, 25);
-            label2.TabIndex = 4;
-            label2.Text = "Seleccionar evento";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label3.Location = new Point(14, 255);
-            label3.Name = "label3";
-            label3.Size = new Size(177, 25);
-            label3.TabIndex = 5;
-            label3.Text = "Seleccionar usuario";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label4.Location = new Point(14, 336);
-            label4.Name = "label4";
-            label4.Size = new Size(166, 25);
-            label4.TabIndex = 6;
-            label4.Text = "Seleccionar sector";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label5.Location = new Point(14, 416);
-            label5.Name = "label5";
-            label5.Size = new Size(148, 25);
-            label5.TabIndex = 7;
-            label5.Text = "Agregar asiento";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label6.Location = new Point(14, 501);
-            label6.Name = "label6";
-            label6.Size = new Size(139, 25);
-            label6.TabIndex = 8;
-            label6.Text = "Agregar precio";
-            // 
-            // btnAgregarEntrada
-            // 
-            btnAgregarEntrada.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAgregarEntrada.Location = new Point(38, 571);
-            btnAgregarEntrada.Margin = new Padding(3, 4, 3, 4);
-            btnAgregarEntrada.Name = "btnAgregarEntrada";
-            btnAgregarEntrada.Size = new Size(238, 55);
-            btnAgregarEntrada.TabIndex = 9;
-            btnAgregarEntrada.Text = "Agregar entrada";
-            btnAgregarEntrada.UseVisualStyleBackColor = true;
-            btnAgregarEntrada.Click += btnAgregarEntrada_Click;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label7.Location = new Point(320, 119);
-            label7.Name = "label7";
-            label7.Size = new Size(261, 37);
-            label7.TabIndex = 15;
-            label7.Text = "Modificar entradas";
-            // 
-            // txtIdModificar
-            // 
-            txtIdModificar.Location = new Point(320, 197);
-            txtIdModificar.Margin = new Padding(3, 4, 3, 4);
-            txtIdModificar.Name = "txtIdModificar";
-            txtIdModificar.Size = new Size(278, 27);
-            txtIdModificar.TabIndex = 18;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label8.Location = new Point(320, 163);
-            label8.Name = "label8";
-            label8.Size = new Size(307, 25);
-            label8.TabIndex = 17;
-            label8.Text = "ID de entrada que desea modificar";
-            // 
-            // btnBuscarEntrada
-            // 
-            btnBuscarEntrada.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBuscarEntrada.Location = new Point(346, 235);
-            btnBuscarEntrada.Margin = new Padding(3, 4, 3, 4);
-            btnBuscarEntrada.Name = "btnBuscarEntrada";
-            btnBuscarEntrada.Size = new Size(227, 47);
-            btnBuscarEntrada.TabIndex = 19;
-            btnBuscarEntrada.Text = "Buscar entrada";
-            btnBuscarEntrada.UseVisualStyleBackColor = true;
-            btnBuscarEntrada.Click += btnBuscarEntrada_Click;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label9.Location = new Point(320, 616);
-            label9.Name = "label9";
-            label9.Size = new Size(153, 25);
-            label9.TabIndex = 24;
-            label9.Text = "Modificar precio";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label10.Location = new Point(320, 531);
-            label10.Name = "label10";
-            label10.Size = new Size(162, 25);
-            label10.TabIndex = 23;
-            label10.Text = "Modificar asiento";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label11.Location = new Point(320, 451);
-            label11.Name = "label11";
-            label11.Size = new Size(152, 25);
-            label11.TabIndex = 22;
-            label11.Text = "Modificar sector";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label12.Location = new Point(320, 369);
-            label12.Name = "label12";
-            label12.Size = new Size(163, 25);
-            label12.TabIndex = 21;
-            label12.Text = "Modificar usuario";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label13.Location = new Point(320, 289);
-            label13.Name = "label13";
-            label13.Size = new Size(159, 25);
-            label13.TabIndex = 20;
-            label13.Text = "Modificar evento";
-            // 
-            // btnModificarEntrada
-            // 
-            btnModificarEntrada.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnModificarEntrada.Location = new Point(335, 685);
-            btnModificarEntrada.Margin = new Padding(3, 4, 3, 4);
-            btnModificarEntrada.Name = "btnModificarEntrada";
-            btnModificarEntrada.Size = new Size(249, 63);
-            btnModificarEntrada.TabIndex = 30;
-            btnModificarEntrada.Text = "Modificar entrada";
-            btnModificarEntrada.UseVisualStyleBackColor = true;
-            btnModificarEntrada.Click += btnModificarEntrada_Click;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            label14.Location = new Point(624, 121);
-            label14.Name = "label14";
-            label14.Size = new Size(241, 37);
-            label14.TabIndex = 31;
-            label14.Text = "Eliminar entradas";
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(659, 248);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(211, 49);
-            button1.TabIndex = 34;
-            button1.Text = "Eliminar entrada";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // txtIdEliminar
-            // 
-            txtIdEliminar.Location = new Point(624, 209);
-            txtIdEliminar.Margin = new Padding(3, 4, 3, 4);
-            txtIdEliminar.Name = "txtIdEliminar";
-            txtIdEliminar.Size = new Size(278, 27);
-            txtIdEliminar.TabIndex = 33;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            label15.Location = new Point(624, 175);
-            label15.Name = "label15";
-            label15.Size = new Size(295, 25);
-            label15.TabIndex = 32;
-            label15.Text = "ID de entrada que desea Eliminar";
-            // 
-            // comboEventoAgregar
-            // 
-            comboEventoAgregar.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboEventoAgregar.FormattingEnabled = true;
-            comboEventoAgregar.Items.AddRange(new object[] { "nicki minaj", "nicki nicole", "sabrina carpenter" });
-            comboEventoAgregar.Location = new Point(14, 204);
-            comboEventoAgregar.Margin = new Padding(3, 4, 3, 4);
-            comboEventoAgregar.Name = "comboEventoAgregar";
-            comboEventoAgregar.Size = new Size(278, 28);
-            comboEventoAgregar.TabIndex = 10;
-            // 
-            // comboUsuarioAgregar
-            // 
-            comboUsuarioAgregar.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboUsuarioAgregar.FormattingEnabled = true;
-            comboUsuarioAgregar.Location = new Point(14, 291);
-            comboUsuarioAgregar.Margin = new Padding(3, 4, 3, 4);
-            comboUsuarioAgregar.Name = "comboUsuarioAgregar";
-            comboUsuarioAgregar.Size = new Size(278, 28);
-            comboUsuarioAgregar.TabIndex = 11;
-            // 
-            // comboSectorAgregar
-            // 
-            comboSectorAgregar.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboSectorAgregar.FormattingEnabled = true;
-            comboSectorAgregar.Items.AddRange(new object[] { "Platea alta sur", "Platea media sur", "Platea alta sur", "Platea alta norte", "Platea media norte", "Platea alta norte", "Campo" });
-            comboSectorAgregar.Location = new Point(14, 365);
-            comboSectorAgregar.Margin = new Padding(3, 4, 3, 4);
-            comboSectorAgregar.Name = "comboSectorAgregar";
-            comboSectorAgregar.Size = new Size(278, 28);
-            comboSectorAgregar.TabIndex = 12;
-            // 
-            // txtAsientoAgregar
-            // 
-            txtAsientoAgregar.Location = new Point(14, 451);
-            txtAsientoAgregar.Margin = new Padding(3, 4, 3, 4);
-            txtAsientoAgregar.Name = "txtAsientoAgregar";
-            txtAsientoAgregar.Size = new Size(278, 27);
-            txtAsientoAgregar.TabIndex = 13;
-            // 
-            // txtPrecioAgregar
-            // 
-            txtPrecioAgregar.Location = new Point(14, 532);
-            txtPrecioAgregar.Margin = new Padding(3, 4, 3, 4);
-            txtPrecioAgregar.Name = "txtPrecioAgregar";
-            txtPrecioAgregar.Size = new Size(278, 27);
-            txtPrecioAgregar.TabIndex = 16;
-            // 
-            // comboUsuarioModificar
-            // 
-            comboUsuarioModificar.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboUsuarioModificar.FormattingEnabled = true;
-            comboUsuarioModificar.Location = new Point(320, 400);
-            comboUsuarioModificar.Margin = new Padding(3, 4, 3, 4);
-            comboUsuarioModificar.Name = "comboUsuarioModificar";
-            comboUsuarioModificar.Size = new Size(278, 28);
-            comboUsuarioModificar.TabIndex = 26;
-            // 
-            // comboSectorModificar
-            // 
-            comboSectorModificar.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboSectorModificar.FormattingEnabled = true;
-            comboSectorModificar.Items.AddRange(new object[] { "Platea alta sur", "Platea media sur", "Platea alta sur", "Platea alta norte", "Platea media norte", "Platea alta norte", "Campo" });
-            comboSectorModificar.Location = new Point(320, 480);
-            comboSectorModificar.Margin = new Padding(3, 4, 3, 4);
-            comboSectorModificar.Name = "comboSectorModificar";
-            comboSectorModificar.Size = new Size(278, 28);
-            comboSectorModificar.TabIndex = 27;
-            // 
-            // txtAsientoModificar
-            // 
-            txtAsientoModificar.Location = new Point(320, 565);
-            txtAsientoModificar.Margin = new Padding(3, 4, 3, 4);
-            txtAsientoModificar.Name = "txtAsientoModificar";
-            txtAsientoModificar.Size = new Size(278, 27);
-            txtAsientoModificar.TabIndex = 28;
-            // 
-            // txtPrecioModificar
-            // 
-            txtPrecioModificar.Location = new Point(320, 647);
-            txtPrecioModificar.Margin = new Padding(3, 4, 3, 4);
-            txtPrecioModificar.Name = "txtPrecioModificar";
-            txtPrecioModificar.Size = new Size(278, 27);
-            txtPrecioModificar.TabIndex = 29;
-            // 
-            // comboEventoModificar
-            // 
-            comboEventoModificar.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboEventoModificar.FormattingEnabled = true;
-            comboEventoModificar.Location = new Point(320, 319);
-            comboEventoModificar.Margin = new Padding(3, 4, 3, 4);
-            comboEventoModificar.Name = "comboEventoModificar";
-            comboEventoModificar.Size = new Size(278, 28);
-            comboEventoModificar.TabIndex = 25;
-            // 
             // linkLabel2
             // 
             linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(346, 45);
+            linkLabel2.BackColor = Color.Transparent;
+            linkLabel2.LinkColor = SystemColors.ControlLightLight;
+            linkLabel2.Location = new Point(300, 14);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(90, 20);
+            linkLabel2.Size = new Size(72, 15);
             linkLabel2.TabIndex = 35;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "ABM Evento";
@@ -410,33 +113,308 @@
             // linkLabel3
             // 
             linkLabel3.AutoSize = true;
-            linkLabel3.Location = new Point(490, 45);
+            linkLabel3.BackColor = Color.Transparent;
+            linkLabel3.LinkColor = SystemColors.ControlLightLight;
+            linkLabel3.Location = new Point(430, 14);
             linkLabel3.Name = "linkLabel3";
-            linkLabel3.Size = new Size(94, 20);
+            linkLabel3.Size = new Size(74, 15);
             linkLabel3.TabIndex = 63;
             linkLabel3.TabStop = true;
             linkLabel3.Text = "ABM Estadio";
             linkLabel3.LinkClicked += linkLabel3_LinkClicked;
             // 
-            // linkVolver
+            // dataGridView1
             // 
-            linkVolver.AutoSize = true;
-            linkVolver.Location = new Point(31, 45);
-            linkVolver.Name = "linkVolver";
-            linkVolver.Size = new Size(96, 20);
-            linkVolver.TabIndex = 60;
-            linkVolver.TabStop = true;
-            linkVolver.Text = "ABM Entrada";
-            linkVolver.LinkClicked += linkVolver_LinkClicked;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(775, 75);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(480, 580);
+            dataGridView1.TabIndex = 0;
+            // 
+            // label1 (Título Agregar)
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            label1.Location = new Point(24, 75);
+            label1.Name = "label1";
+            label1.Size = new Size(180, 28);
+            label1.TabIndex = 3;
+            label1.Text = "Agregar Entrada";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(24, 112);
+            label2.Name = "label2";
+            label2.Size = new Size(115, 15);
+            label2.TabIndex = 4;
+            label2.Text = "Seleccionar evento:";
+            // 
+            // comboEventoAgregar
+            // 
+            comboEventoAgregar.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboEventoAgregar.FormattingEnabled = true;
+            comboEventoAgregar.Location = new Point(24, 132);
+            comboEventoAgregar.Name = "comboEventoAgregar";
+            comboEventoAgregar.Size = new Size(220, 23);
+            comboEventoAgregar.TabIndex = 10;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(24, 168);
+            label3.Name = "label3";
+            label3.Size = new Size(120, 15);
+            label3.TabIndex = 5;
+            label3.Text = "Seleccionar usuario:";
+            // 
+            // comboUsuarioAgregar
+            // 
+            comboUsuarioAgregar.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboUsuarioAgregar.FormattingEnabled = true;
+            comboUsuarioAgregar.Location = new Point(24, 188);
+            comboUsuarioAgregar.Name = "comboUsuarioAgregar";
+            comboUsuarioAgregar.Size = new Size(220, 23);
+            comboUsuarioAgregar.TabIndex = 11;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(24, 224);
+            label4.Name = "label4";
+            label4.Size = new Size(112, 15);
+            label4.TabIndex = 6;
+            label4.Text = "Seleccionar sector:";
+            // 
+            // comboSectorAgregar
+            // 
+            comboSectorAgregar.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboSectorAgregar.FormattingEnabled = true;
+            comboSectorAgregar.Items.AddRange(new object[] { "Platea alta sur", "Platea media sur", "Platea baja sur", "Platea alta norte", "Platea media norte", "Platea baja norte", "Campo" });
+            comboSectorAgregar.Location = new Point(24, 244);
+            comboSectorAgregar.Name = "comboSectorAgregar";
+            comboSectorAgregar.Size = new Size(220, 23);
+            comboSectorAgregar.TabIndex = 12;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(24, 280);
+            label5.Name = "label5";
+            label5.Size = new Size(98, 15);
+            label5.TabIndex = 7;
+            label5.Text = "Agregar asiento:";
+            // 
+            // txtAsientoAgregar
+            // 
+            txtAsientoAgregar.Location = new Point(24, 300);
+            txtAsientoAgregar.Name = "txtAsientoAgregar";
+            txtAsientoAgregar.Size = new Size(220, 23);
+            txtAsientoAgregar.TabIndex = 13;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(24, 336);
+            label6.Name = "label6";
+            label6.Size = new Size(92, 15);
+            label6.TabIndex = 8;
+            label6.Text = "Agregar precio:";
+            // 
+            // txtPrecioAgregar
+            // 
+            txtPrecioAgregar.Location = new Point(24, 356);
+            txtPrecioAgregar.Name = "txtPrecioAgregar";
+            txtPrecioAgregar.Size = new Size(220, 23);
+            txtPrecioAgregar.TabIndex = 16;
+            // 
+            // btnAgregarEntrada
+            // 
+            btnAgregarEntrada.Location = new Point(24, 480);
+            btnAgregarEntrada.Name = "btnAgregarEntrada";
+            btnAgregarEntrada.Size = new Size(220, 40);
+            btnAgregarEntrada.TabIndex = 9;
+            btnAgregarEntrada.Text = "Agregar Entrada";
+            btnAgregarEntrada.UseVisualStyleBackColor = true;
+            btnAgregarEntrada.Click += btnAgregarEntrada_Click;
+            // 
+            // label7 (Título Modificar)
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            label7.Location = new Point(275, 75);
+            label7.Name = "label7";
+            label7.Size = new Size(190, 28);
+            label7.TabIndex = 15;
+            label7.Text = "Modificar Entrada";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(275, 112);
+            label8.Name = "label8";
+            label8.Size = new Size(150, 15);
+            label8.TabIndex = 17;
+            label8.Text = "ID de entrada a modificar:";
+            // 
+            // txtIdModificar
+            // 
+            txtIdModificar.Location = new Point(275, 132);
+            txtIdModificar.Name = "txtIdModificar";
+            txtIdModificar.Size = new Size(220, 23);
+            txtIdModificar.TabIndex = 18;
+            // 
+            // btnBuscarEntrada
+            // 
+            btnBuscarEntrada.Location = new Point(275, 165);
+            btnBuscarEntrada.Name = "btnBuscarEntrada";
+            btnBuscarEntrada.Size = new Size(220, 36);
+            btnBuscarEntrada.TabIndex = 19;
+            btnBuscarEntrada.Text = "Buscar Entrada";
+            btnBuscarEntrada.UseVisualStyleBackColor = true;
+            btnBuscarEntrada.Click += btnBuscarEntrada_Click;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(275, 212);
+            label13.Name = "label13";
+            label13.Size = new Size(105, 15);
+            label13.TabIndex = 20;
+            label13.Text = "Modificar evento:";
+            // 
+            // comboEventoModificar
+            // 
+            comboEventoModificar.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboEventoModificar.FormattingEnabled = true;
+            comboEventoModificar.Location = new Point(275, 230);
+            comboEventoModificar.Name = "comboEventoModificar";
+            comboEventoModificar.Size = new Size(220, 23);
+            comboEventoModificar.TabIndex = 25;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(275, 262);
+            label12.Name = "label12";
+            label12.Size = new Size(108, 15);
+            label12.TabIndex = 21;
+            label12.Text = "Modificar usuario:";
+            // 
+            // comboUsuarioModificar
+            // 
+            comboUsuarioModificar.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboUsuarioModificar.FormattingEnabled = true;
+            comboUsuarioModificar.Location = new Point(275, 280);
+            comboUsuarioModificar.Name = "comboUsuarioModificar";
+            comboUsuarioModificar.Size = new Size(220, 23);
+            comboUsuarioModificar.TabIndex = 26;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(275, 312);
+            label11.Name = "label11";
+            label11.Size = new Size(100, 15);
+            label11.TabIndex = 22;
+            label11.Text = "Modificar sector:";
+            // 
+            // comboSectorModificar
+            // 
+            comboSectorModificar.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboSectorModificar.FormattingEnabled = true;
+            comboSectorModificar.Items.AddRange(new object[] { "Platea alta sur", "Platea media sur", "Platea baja sur", "Platea alta norte", "Platea media norte", "Platea baja norte", "Campo" });
+            comboSectorModificar.Location = new Point(275, 330);
+            comboSectorModificar.Name = "comboSectorModificar";
+            comboSectorModificar.Size = new Size(220, 23);
+            comboSectorModificar.TabIndex = 27;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(275, 362);
+            label10.Name = "label10";
+            label10.Size = new Size(106, 15);
+            label10.TabIndex = 23;
+            label10.Text = "Modificar asiento:";
+            // 
+            // txtAsientoModificar
+            // 
+            txtAsientoModificar.Location = new Point(275, 380);
+            txtAsientoModificar.Name = "txtAsientoModificar";
+            txtAsientoModificar.Size = new Size(220, 23);
+            txtAsientoModificar.TabIndex = 28;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(275, 412);
+            label9.Name = "label9";
+            label9.Size = new Size(100, 15);
+            label9.TabIndex = 24;
+            label9.Text = "Modificar precio:";
+            // 
+            // txtPrecioModificar
+            // 
+            txtPrecioModificar.Location = new Point(275, 430);
+            txtPrecioModificar.Name = "txtPrecioModificar";
+            txtPrecioModificar.Size = new Size(220, 23);
+            txtPrecioModificar.TabIndex = 29;
+            // 
+            // btnModificarEntrada
+            // 
+            btnModificarEntrada.Location = new Point(275, 480);
+            btnModificarEntrada.Name = "btnModificarEntrada";
+            btnModificarEntrada.Size = new Size(220, 40);
+            btnModificarEntrada.TabIndex = 30;
+            btnModificarEntrada.Text = "Modificar Entrada";
+            btnModificarEntrada.UseVisualStyleBackColor = true;
+            btnModificarEntrada.Click += btnModificarEntrada_Click;
+            // 
+            // label14 (Título Eliminar)
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            label14.Location = new Point(526, 75);
+            label14.Name = "label14";
+            label14.Size = new Size(180, 28);
+            label14.TabIndex = 31;
+            label14.Text = "Eliminar Entrada";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(526, 112);
+            label15.Name = "label15";
+            label15.Size = new Size(145, 15);
+            label15.TabIndex = 32;
+            label15.Text = "ID de entrada a eliminar:";
+            // 
+            // txtIdEliminar
+            // 
+            txtIdEliminar.Location = new Point(526, 132);
+            txtIdEliminar.Name = "txtIdEliminar";
+            txtIdEliminar.Size = new Size(220, 23);
+            txtIdEliminar.TabIndex = 33;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(526, 165);
+            button1.Name = "button1";
+            button1.Size = new Size(220, 36);
+            button1.TabIndex = 34;
+            button1.Text = "Eliminar Entrada";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1496, 776);
-            Controls.Add(linkLabel3);
-            Controls.Add(linkVolver);
-            Controls.Add(linkLabel2);
+            ClientSize = new Size(1280, 680);
+            Controls.Add(panel1);
             Controls.Add(button1);
             Controls.Add(txtIdEliminar);
             Controls.Add(label15);
@@ -468,11 +446,12 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(linkLabel1);
             Controls.Add(dataGridView1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -480,6 +459,7 @@
 
         #endregion
 
+        private Panel panel1;
         private DataGridView dataGridView1;
         private LinkLabel linkLabel1;
         private Label label1;

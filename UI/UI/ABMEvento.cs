@@ -17,13 +17,15 @@ namespace UI
         public ABMEvento()
         {
             InitializeComponent();
-            UiTheme.AplicarEstiloNavLink(this);
+            
         }
 
         private void ABMEvento_Load(object sender, EventArgs e)
         {
             try
             {
+                UiTheme.AplicarTema(this, "ABM Evento");
+
                 List<EstadioEntity> estadios = eventoBusiness.ObtenerEstadios();
 
                 comboEstadioAgregar.DataSource = new List<EstadioEntity>(estadios);
@@ -203,18 +205,7 @@ namespace UI
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //EVENTO
-            try
-            {
-                ABMEvento formAbrir = new ABMEvento();
-                this.Hide();
-                formAbrir.Show();
-                formAbrir.FormClosed += (s, args) => this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            Actualizar();
         }
     }
 }

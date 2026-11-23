@@ -9,17 +9,18 @@ namespace UI
         public Form1()
         {
             InitializeComponent();
-            UiTheme.AplicarEstiloNavLink(this);
         }
+
         EntradaBusiness entradaBusiness = new EntradaBusiness();
         UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
-
         EventoBusiness eventoBusiness = new EventoBusiness();
 
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
+                UiTheme.AplicarTema(this, "ABM Entrada");
+
                 comboUsuarioAgregar.DataSource = usuarioBusiness.getAll();
                 comboUsuarioAgregar.DisplayMember = "NombreUsuario";
                 comboUsuarioAgregar.ValueMember = "IdUsuario";
@@ -46,6 +47,7 @@ namespace UI
                 MessageBox.Show(ex.Message);
             }
         }
+
         public void Actualizar()
         {
             try
@@ -87,7 +89,7 @@ namespace UI
                 entrada.Precio = Convert.ToDecimal(txtPrecioAgregar.Text);
                 entradaBusiness.AgregarEntradaBLL(entrada);
                 Actualizar();
-                MessageBox.Show("Se ha agregado correctamente la entrada", "!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Se ha agregado correctamente la entrada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -138,7 +140,7 @@ namespace UI
                 entrada.Precio = Convert.ToDecimal(txtPrecioModificar.Text);
                 entradaBusiness.ModificarEntradaBLL(entrada);
                 Actualizar();
-                MessageBox.Show("Se ha actualizado correctamente la entrada", "!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Se ha actualizado correctamente la entrada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -153,7 +155,7 @@ namespace UI
                 int IdEliminar = Convert.ToInt32(txtIdEliminar.Text);
                 entradaBusiness.EliminarIDBLL(IdEliminar);
                 Actualizar();
-                MessageBox.Show("Se ha eliminado correctamente la entrada", "!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Se ha eliminado correctamente la entrada", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -179,18 +181,8 @@ namespace UI
 
         private void linkVolver_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Entrada
-            try
-            {
-                Form1 formAbrir = new Form1();
-                this.Hide();
-                formAbrir.Show();
-                formAbrir.FormClosed += (s, args) => this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //Entrada (ya estamos acá, solo refrescamos)
+            Actualizar();
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -7,7 +7,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UI
 {
@@ -16,24 +15,14 @@ namespace UI
         public ABMEstadio()
         {
             InitializeComponent();
-            UiTheme.AplicarEstiloNavLink(this);
         }
+
         EstadioBusiness eBusiness = new EstadioBusiness();
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //ESTADIO
-            try
-            {
-                ABMEstadio formAbrir = new ABMEstadio();
-                this.Hide();
-                formAbrir.Show();
-                formAbrir.FormClosed += (s, args) => this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //ESTADIO (ya estamos acá, solo refrescamos)
+            Actualizar();
         }
 
         private void linkVolver_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -86,6 +75,7 @@ namespace UI
 
         private void ABMEstadio_Load(object sender, EventArgs e)
         {
+            UiTheme.AplicarTema(this, "ABM Estadio");
             Actualizar();
         }
 
@@ -110,6 +100,7 @@ namespace UI
                 MessageBox.Show(ex.ToString());
             }
         }
+
         public void Actualizar()
         {
             try
@@ -119,7 +110,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                throw;
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -144,19 +135,15 @@ namespace UI
             //Buscar para llenar
             try
             {
-
                 if (int.TryParse(textBox13.Text, out int idBuscado))
                 {
-
                     EstadioEntity estadioModificar = eBusiness.ObtenerIdEstadio(idBuscado);
-
 
                     if (estadioModificar != null)
                     {
                         textBox15.Text = estadioModificar.Nombre;
                         textBox14.Text = estadioModificar.Direccion;
                         textBox12.Text = estadioModificar.Capacidad.ToString();
-                      
                     }
                     else
                     {
@@ -179,17 +166,14 @@ namespace UI
             //Modificar
             try
             {
-
                 if (int.TryParse(textBox13.Text, out int idModificar))
                 {
-
                     EstadioEntity estadioModificar = new EstadioEntity
                     {
                         IdEstadio = idModificar,
                         Nombre = textBox15.Text,
                         Direccion = textBox14.Text,
                         Capacidad = Convert.ToInt32(textBox12.Text)
-                       
                     };
                     eBusiness.ModificarEstadio(estadioModificar);
                     MessageBox.Show("Estadio modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);

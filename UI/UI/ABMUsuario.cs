@@ -16,8 +16,8 @@ namespace UI
         public ABMUsuario()
         {
             InitializeComponent();
-            UiTheme.AplicarEstiloNavLink(this);
         }
+
         UsuarioBusiness uBusieness = new UsuarioBusiness();
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -43,19 +43,26 @@ namespace UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UsuarioEntity usuario = new UsuarioEntity();
-            TipoUsuarioEntity tipoUsuario = new TipoUsuarioEntity();
-            usuario.NombreUsuario = textBox1.Text;
-            usuario.Password = textBox2.Text;
-            usuario.Nombre = textBox4.Text;
-            usuario.Apellido = textBox5.Text;
-            usuario.Dni = textBox6.Text;
-            usuario.Email = textBox7.Text;
-            tipoUsuario.IdTipo = 2;
-            usuario.TipoUsuario = tipoUsuario;
-            uBusieness.agregarUsuario(usuario);
-            Actualizar();
-
+            try
+            {
+                UsuarioEntity usuario = new UsuarioEntity();
+                TipoUsuarioEntity tipoUsuario = new TipoUsuarioEntity();
+                usuario.NombreUsuario = textBox1.Text;
+                usuario.Password = textBox2.Text;
+                usuario.Nombre = textBox4.Text;
+                usuario.Apellido = textBox5.Text;
+                usuario.Dni = textBox6.Text;
+                usuario.Email = textBox7.Text;
+                tipoUsuario.IdTipo = 2;
+                usuario.TipoUsuario = tipoUsuario;
+                uBusieness.agregarUsuario(usuario);
+                Actualizar();
+                MessageBox.Show("Usuario agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -67,6 +74,7 @@ namespace UI
         {
             try
             {
+                UiTheme.AplicarTema(this, "ABM Usuario");
                 Actualizar();
             }
             catch (Exception ex)
@@ -74,16 +82,20 @@ namespace UI
                 MessageBox.Show(ex.Message);
             }
         }
+
         public void Actualizar()
         {
             try
             {
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = uBusieness.getAll();
+
+                if (dataGridView1.Columns["Password"] != null)
+                    dataGridView1.Columns["Password"].Visible = false;
             }
             catch (Exception ex)
             {
-                throw;
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -93,7 +105,8 @@ namespace UI
             {
                 uBusieness.eliminarUsuario(Convert.ToInt32(textBox8.Text));
                 Actualizar();
-                MessageBox.Show("Usuario Eliminado");
+                textBox8.Clear();
+                MessageBox.Show("Usuario Eliminado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -105,10 +118,8 @@ namespace UI
         {
             try
             {
-
                 if (int.TryParse(textBox13.Text, out int idModificar))
                 {
-
                     UsuarioEntity usuarioAModificar = new UsuarioEntity
                     {
                         IdUsuario = idModificar,
@@ -138,12 +149,9 @@ namespace UI
         {
             try
             {
-
                 if (int.TryParse(textBox13.Text, out int idBuscado))
                 {
-
                     UsuarioEntity usuarioAModificar = uBusieness.buscarID(idBuscado);
-
 
                     if (usuarioAModificar != null)
                     {
@@ -172,18 +180,8 @@ namespace UI
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //USUARIO
-            try
-            {
-                ABMUsuario formAbrir = new ABMUsuario();
-                this.Hide();
-                formAbrir.Show();
-                formAbrir.FormClosed += (s, args) => this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //USUARIO (ya estamos acá, solo refrescamos)
+            Actualizar();
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -216,7 +214,6 @@ namespace UI
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
     }
 }

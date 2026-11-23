@@ -2,15 +2,8 @@
 {
     partial class ABMUsuario
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,13 +15,13 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
+            panel1 = new Panel();
             linkLabel1 = new LinkLabel();
+            linkLabel4 = new LinkLabel();
+            linkLabel2 = new LinkLabel();
+            linkLabel3 = new LinkLabel();
             label1 = new Label();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
@@ -45,7 +38,6 @@
             label7 = new Label();
             button1 = new Button();
             dataGridView1 = new DataGridView();
-            label8 = new Label();
             label9 = new Label();
             label10 = new Label();
             button2 = new Button();
@@ -68,391 +60,405 @@
             button4 = new Button();
             textBox13 = new TextBox();
             label17 = new Label();
-            linkLabel3 = new LinkLabel();
-            linkLabel2 = new LinkLabel();
-            linkLabel4 = new LinkLabel();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(30, 41, 59);
+            panel1.Controls.Add(linkLabel1);
+            panel1.Controls.Add(linkLabel4);
+            panel1.Controls.Add(linkLabel2);
+            panel1.Controls.Add(linkLabel3);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1280, 45);
+            panel1.TabIndex = 64;
             // 
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(15, 9);
+            linkLabel1.BackColor = Color.Transparent;
+            linkLabel1.LinkColor = SystemColors.ControlLightLight;
+            linkLabel1.Location = new Point(30, 14);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(96, 20);
+            linkLabel1.Size = new Size(76, 15);
             linkLabel1.TabIndex = 0;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "ABM Entrada";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(25, 76);
-            label1.Name = "label1";
-            label1.Size = new Size(118, 20);
-            label1.TabIndex = 1;
-            label1.Text = "Nombre Usuario";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(24, 112);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(128, 27);
-            textBox1.TabIndex = 2;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(24, 191);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(128, 27);
-            textBox2.TabIndex = 4;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(25, 155);
-            label2.Name = "label2";
-            label2.Size = new Size(70, 20);
-            label2.TabIndex = 3;
-            label2.Text = "Password";
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(25, 269);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(128, 27);
-            textBox3.TabIndex = 6;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(26, 233);
-            label3.Name = "label3";
-            label3.Size = new Size(122, 20);
-            label3.TabIndex = 5;
-            label3.Text = "Repetir Password";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(25, 345);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(128, 27);
-            textBox4.TabIndex = 8;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(26, 309);
-            label4.Name = "label4";
-            label4.Size = new Size(64, 20);
-            label4.TabIndex = 7;
-            label4.Text = "Nombre";
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(203, 191);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(128, 27);
-            textBox5.TabIndex = 10;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(204, 155);
-            label5.Name = "label5";
-            label5.Size = new Size(66, 20);
-            label5.TabIndex = 9;
-            label5.Text = "Apellido";
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(201, 270);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(128, 27);
-            textBox6.TabIndex = 12;
-            textBox6.TextChanged += textBox6_TextChanged;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(202, 234);
-            label6.Name = "label6";
-            label6.Size = new Size(35, 20);
-            label6.TabIndex = 11;
-            label6.Text = "DNI";
-            // 
-            // textBox7
-            // 
-            textBox7.Location = new Point(202, 112);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(128, 27);
-            textBox7.TabIndex = 14;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(203, 76);
-            label7.Name = "label7";
-            label7.Size = new Size(46, 20);
-            label7.TabIndex = 13;
-            label7.Text = "Email";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(26, 405);
-            button1.Name = "button1";
-            button1.Size = new Size(199, 40);
-            button1.TabIndex = 15;
-            button1.Text = "Alta";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(1065, 85);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(614, 348);
-            dataGridView1.TabIndex = 16;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(1065, 53);
-            label8.Name = "label8";
-            label8.Size = new Size(130, 20);
-            label8.TabIndex = 17;
-            label8.Text = "Todos los usuarios";
-            label8.Click += label8_Click;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(26, 53);
-            label9.Name = "label9";
-            label9.Size = new Size(36, 20);
-            label9.TabIndex = 18;
-            label9.Text = "Alta";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(421, 53);
-            label10.Name = "label10";
-            label10.Size = new Size(38, 20);
-            label10.TabIndex = 19;
-            label10.Text = "Baja";
-            // 
-            // button2
-            // 
-            button2.Location = new Point(421, 178);
-            button2.Name = "button2";
-            button2.Size = new Size(199, 40);
-            button2.TabIndex = 22;
-            button2.Text = "Baja";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(420, 118);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(128, 27);
-            textBox8.TabIndex = 21;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(421, 82);
-            label11.Name = "label11";
-            label11.Size = new Size(27, 20);
-            label11.TabIndex = 20;
-            label11.Text = "ID:";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(685, 53);
-            label12.Name = "label12";
-            label12.Size = new Size(92, 20);
-            label12.TabIndex = 38;
-            label12.Text = "Modifcacion";
-            // 
-            // button3
-            // 
-            button3.Location = new Point(685, 420);
-            button3.Name = "button3";
-            button3.Size = new Size(199, 40);
-            button3.TabIndex = 37;
-            button3.Text = "Modificar";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // textBox9
-            // 
-            textBox9.Location = new Point(861, 223);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(128, 27);
-            textBox9.TabIndex = 36;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(862, 187);
-            label13.Name = "label13";
-            label13.Size = new Size(46, 20);
-            label13.TabIndex = 35;
-            label13.Text = "Email";
-            // 
-            // textBox10
-            // 
-            textBox10.Location = new Point(860, 381);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(128, 27);
-            textBox10.TabIndex = 34;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(861, 345);
-            label14.Name = "label14";
-            label14.Size = new Size(35, 20);
-            label14.TabIndex = 33;
-            label14.Text = "DNI";
-            // 
-            // textBox11
-            // 
-            textBox11.Location = new Point(862, 302);
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(128, 27);
-            textBox11.TabIndex = 32;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(863, 266);
-            label15.Name = "label15";
-            label15.Size = new Size(66, 20);
-            label15.TabIndex = 31;
-            label15.Text = "Apellido";
-            // 
-            // textBox12
-            // 
-            textBox12.Location = new Point(685, 381);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(128, 27);
-            textBox12.TabIndex = 30;
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Location = new Point(686, 345);
-            label16.Name = "label16";
-            label16.Size = new Size(64, 20);
-            label16.TabIndex = 29;
-            label16.Text = "Nombre";
-            // 
-            // textBox14
-            // 
-            textBox14.Location = new Point(683, 302);
-            textBox14.Name = "textBox14";
-            textBox14.Size = new Size(128, 27);
-            textBox14.TabIndex = 26;
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Location = new Point(684, 266);
-            label18.Name = "label18";
-            label18.Size = new Size(70, 20);
-            label18.TabIndex = 25;
-            label18.Text = "Password";
-            // 
-            // textBox15
-            // 
-            textBox15.Location = new Point(683, 223);
-            textBox15.Name = "textBox15";
-            textBox15.Size = new Size(128, 27);
-            textBox15.TabIndex = 24;
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Location = new Point(684, 187);
-            label19.Name = "label19";
-            label19.Size = new Size(118, 20);
-            label19.TabIndex = 23;
-            label19.Text = "Nombre Usuario";
-            // 
-            // button4
-            // 
-            button4.Location = new Point(683, 140);
-            button4.Name = "button4";
-            button4.Size = new Size(199, 40);
-            button4.TabIndex = 41;
-            button4.Text = "Buscar";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
-            // 
-            // textBox13
-            // 
-            textBox13.Location = new Point(685, 107);
-            textBox13.Name = "textBox13";
-            textBox13.Size = new Size(128, 27);
-            textBox13.TabIndex = 40;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Location = new Point(686, 71);
-            label17.Name = "label17";
-            label17.Size = new Size(27, 20);
-            label17.TabIndex = 39;
-            label17.Text = "ID:";
-            // 
-            // linkLabel3
-            // 
-            linkLabel3.AutoSize = true;
-            linkLabel3.Location = new Point(442, 9);
-            linkLabel3.Name = "linkLabel3";
-            linkLabel3.Size = new Size(94, 20);
-            linkLabel3.TabIndex = 63;
-            linkLabel3.TabStop = true;
-            linkLabel3.Text = "ABM Estadio";
-            linkLabel3.LinkClicked += linkLabel3_LinkClicked;
-            // 
-            // linkLabel2
-            // 
-            linkLabel2.AutoSize = true;
-            linkLabel2.Location = new Point(297, 9);
-            linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(90, 20);
-            linkLabel2.TabIndex = 62;
-            linkLabel2.TabStop = true;
-            linkLabel2.Text = "ABM Evento";
-            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
-            // 
             // linkLabel4
             // 
             linkLabel4.AutoSize = true;
-            linkLabel4.Location = new Point(144, 9);
+            linkLabel4.BackColor = Color.Transparent;
+            linkLabel4.LinkColor = SystemColors.ControlLightLight;
+            linkLabel4.Location = new Point(165, 14);
             linkLabel4.Name = "linkLabel4";
-            linkLabel4.Size = new Size(95, 20);
+            linkLabel4.Size = new Size(76, 15);
             linkLabel4.TabIndex = 61;
             linkLabel4.TabStop = true;
             linkLabel4.Text = "ABM Usuario";
             linkLabel4.LinkClicked += linkLabel4_LinkClicked;
             // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.BackColor = Color.Transparent;
+            linkLabel2.LinkColor = SystemColors.ControlLightLight;
+            linkLabel2.Location = new Point(300, 14);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(72, 15);
+            linkLabel2.TabIndex = 62;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "ABM Evento";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
+            // linkLabel3
+            // 
+            linkLabel3.AutoSize = true;
+            linkLabel3.BackColor = Color.Transparent;
+            linkLabel3.LinkColor = SystemColors.ControlLightLight;
+            linkLabel3.Location = new Point(430, 14);
+            linkLabel3.Name = "linkLabel3";
+            linkLabel3.Size = new Size(74, 15);
+            linkLabel3.TabIndex = 63;
+            linkLabel3.TabStop = true;
+            linkLabel3.Text = "ABM Estadio";
+            linkLabel3.LinkClicked += linkLabel3_LinkClicked;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(775, 75);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(480, 580);
+            dataGridView1.TabIndex = 16;
+            // 
+            // label9 (Título Agregar)
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            label9.Location = new Point(24, 75);
+            label9.Name = "label9";
+            label9.Size = new Size(165, 28);
+            label9.TabIndex = 18;
+            label9.Text = "Agregar Usuario";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(24, 112);
+            label1.Name = "label1";
+            label1.Size = new Size(95, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Nombre Usuario:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(24, 132);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(105, 23);
+            textBox1.TabIndex = 2;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(139, 112);
+            label7.Name = "label7";
+            label7.Size = new Size(40, 15);
+            label7.TabIndex = 13;
+            label7.Text = "Email:";
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(139, 132);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(105, 23);
+            textBox7.TabIndex = 14;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(24, 168);
+            label2.Name = "label2";
+            label2.Size = new Size(60, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Password:";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(24, 188);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(105, 23);
+            textBox2.TabIndex = 4;
+            textBox2.UseSystemPasswordChar = true;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(139, 168);
+            label5.Name = "label5";
+            label5.Size = new Size(55, 15);
+            label5.TabIndex = 9;
+            label5.Text = "Apellido:";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(139, 188);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(105, 23);
+            textBox5.TabIndex = 10;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(24, 224);
+            label3.Name = "label3";
+            label3.Size = new Size(98, 15);
+            label3.TabIndex = 5;
+            label3.Text = "Repetir Password:";
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(24, 244);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(105, 23);
+            textBox3.TabIndex = 6;
+            textBox3.UseSystemPasswordChar = true;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(139, 224);
+            label6.Name = "label6";
+            label6.Size = new Size(30, 15);
+            label6.TabIndex = 11;
+            label6.Text = "DNI:";
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(139, 244);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(105, 23);
+            textBox6.TabIndex = 12;
+            textBox6.TextChanged += textBox6_TextChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(24, 280);
+            label4.Name = "label4";
+            label4.Size = new Size(55, 15);
+            label4.TabIndex = 7;
+            label4.Text = "Nombre:";
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(24, 300);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(220, 23);
+            textBox4.TabIndex = 8;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(24, 480);
+            button1.Name = "button1";
+            button1.Size = new Size(220, 40);
+            button1.TabIndex = 15;
+            button1.Text = "Agregar Usuario";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // label12 (Título Modificar)
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            label12.Location = new Point(275, 75);
+            label12.Name = "label12";
+            label12.Size = new Size(185, 28);
+            label12.TabIndex = 38;
+            label12.Text = "Modificar Usuario";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(275, 112);
+            label17.Name = "label17";
+            label17.Size = new Size(145, 15);
+            label17.TabIndex = 39;
+            label17.Text = "ID de usuario a modificar:";
+            // 
+            // textBox13
+            // 
+            textBox13.Location = new Point(275, 132);
+            textBox13.Name = "textBox13";
+            textBox13.Size = new Size(220, 23);
+            textBox13.TabIndex = 40;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(275, 165);
+            button4.Name = "button4";
+            button4.Size = new Size(220, 36);
+            button4.TabIndex = 41;
+            button4.Text = "Buscar Usuario";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(275, 212);
+            label19.Name = "label19";
+            label19.Size = new Size(95, 15);
+            label19.TabIndex = 23;
+            label19.Text = "Nombre Usuario:";
+            // 
+            // textBox15
+            // 
+            textBox15.Location = new Point(275, 230);
+            textBox15.Name = "textBox15";
+            textBox15.Size = new Size(105, 23);
+            textBox15.TabIndex = 24;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(390, 212);
+            label13.Name = "label13";
+            label13.Size = new Size(40, 15);
+            label13.TabIndex = 35;
+            label13.Text = "Email:";
+            // 
+            // textBox9
+            // 
+            textBox9.Location = new Point(390, 230);
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(105, 23);
+            textBox9.TabIndex = 36;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(275, 268);
+            label18.Name = "label18";
+            label18.Size = new Size(60, 15);
+            label18.TabIndex = 25;
+            label18.Text = "Password:";
+            // 
+            // textBox14
+            // 
+            textBox14.Location = new Point(275, 286);
+            textBox14.Name = "textBox14";
+            textBox14.Size = new Size(105, 23);
+            textBox14.TabIndex = 26;
+            textBox14.UseSystemPasswordChar = true;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(390, 268);
+            label15.Name = "label15";
+            label15.Size = new Size(55, 15);
+            label15.TabIndex = 31;
+            label15.Text = "Apellido:";
+            // 
+            // textBox11
+            // 
+            textBox11.Location = new Point(390, 286);
+            textBox11.Name = "textBox11";
+            textBox11.Size = new Size(105, 23);
+            textBox11.TabIndex = 32;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(275, 324);
+            label16.Name = "label16";
+            label16.Size = new Size(55, 15);
+            label16.TabIndex = 29;
+            label16.Text = "Nombre:";
+            // 
+            // textBox12
+            // 
+            textBox12.Location = new Point(275, 342);
+            textBox12.Name = "textBox12";
+            textBox12.Size = new Size(105, 23);
+            textBox12.TabIndex = 30;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(390, 324);
+            label14.Name = "label14";
+            label14.Size = new Size(30, 15);
+            label14.TabIndex = 33;
+            label14.Text = "DNI:";
+            // 
+            // textBox10
+            // 
+            textBox10.Location = new Point(390, 342);
+            textBox10.Name = "textBox10";
+            textBox10.Size = new Size(105, 23);
+            textBox10.TabIndex = 34;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(275, 480);
+            button3.Name = "button3";
+            button3.Size = new Size(220, 40);
+            button3.TabIndex = 37;
+            button3.Text = "Modificar Usuario";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // label10 (Título Eliminar)
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            label10.Location = new Point(526, 75);
+            label10.Name = "label10";
+            label10.Size = new Size(175, 28);
+            label10.TabIndex = 19;
+            label10.Text = "Eliminar Usuario";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(526, 112);
+            label11.Name = "label11";
+            label11.Size = new Size(140, 15);
+            label11.TabIndex = 20;
+            label11.Text = "ID de usuario a eliminar:";
+            // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(526, 132);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(220, 23);
+            textBox8.TabIndex = 21;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(526, 165);
+            button2.Name = "button2";
+            button2.Size = new Size(220, 36);
+            button2.TabIndex = 22;
+            button2.Text = "Eliminar Usuario";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // ABMUsuario
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1691, 708);
-            Controls.Add(linkLabel3);
-            Controls.Add(linkLabel2);
-            Controls.Add(linkLabel4);
+            ClientSize = new Size(1280, 680);
+            Controls.Add(panel1);
             Controls.Add(button4);
             Controls.Add(textBox13);
             Controls.Add(label17);
@@ -475,7 +481,6 @@
             Controls.Add(label11);
             Controls.Add(label10);
             Controls.Add(label9);
-            Controls.Add(label8);
             Controls.Add(dataGridView1);
             Controls.Add(button1);
             Controls.Add(textBox7);
@@ -492,10 +497,11 @@
             Controls.Add(label2);
             Controls.Add(textBox1);
             Controls.Add(label1);
-            Controls.Add(linkLabel1);
             Name = "ABMUsuario";
             Text = "ABMUsuario";
             Load += ABMUsuario_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -503,6 +509,7 @@
 
         #endregion
 
+        private Panel panel1;
         private LinkLabel linkLabel1;
         private Label label1;
         private TextBox textBox1;
@@ -520,7 +527,6 @@
         private Label label7;
         private Button button1;
         private DataGridView dataGridView1;
-        private Label label8;
         private Label label9;
         private Label label10;
         private Button button2;
