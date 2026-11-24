@@ -217,5 +217,13 @@ namespace UI
         {
             Actualizar();
         }
+
+        private void linkCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LogIn login = new LogIn();
+            this.Hide();
+            login.Show();
+            login.FormClosed += (s, args) => this.Close();
+        }
     }
 }

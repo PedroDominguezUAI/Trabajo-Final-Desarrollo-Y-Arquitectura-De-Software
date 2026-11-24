@@ -85,7 +85,7 @@ namespace UI
                 usuario.TipoUsuario = tipoUsuario;
 
 
-                uBusieness.agregarUsuario(usuario,RepetirContraseña);
+                uBusieness.agregarUsuario(usuario, RepetirContraseña);
                 Actualizar();
 
                 textBox1.Clear();
@@ -261,6 +261,14 @@ namespace UI
         private void label8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LogIn login = new LogIn();
+            this.Hide();
+            login.Show();
+            login.FormClosed += (s, args) => this.Close();
         }
     }
 }
