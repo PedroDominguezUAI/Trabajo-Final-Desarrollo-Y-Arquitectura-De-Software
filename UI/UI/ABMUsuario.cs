@@ -16,19 +16,18 @@ namespace UI
         public ABMUsuario()
         {
             InitializeComponent();
-            UiTheme.AplicarEstiloNavLink(this);
         }
+
         UsuarioBusiness uBusieness = new UsuarioBusiness();
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void ABMUsuario_Load(object sender, EventArgs e)
         {
-            //Entrada
             try
             {
-                Form1 formAbrir = new Form1();
-                this.Hide();
-                formAbrir.Show();
-                formAbrir.FormClosed += (s, args) => this.Close();
+                button3.Enabled = false;
+                UiTheme.AplicarTema(this, "ABM Usuario");
+                dataGridView1.CellClick += dataGridView1_CellClick;
+                Actualizar();
             }
             catch (Exception ex)
             {
@@ -36,15 +35,43 @@ namespace UI
             }
         }
 
-        private void textBox6_TextChanged(object sender, EventArgs e)
+        private void dataGridView1_CellClick(object? sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                string id = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()!;
+                textBox13.Text = id;
+                textBox8.Text = id;
+                button4_Click(sender!, EventArgs.Empty);
+            }
+        }
 
+        public void Actualizar()
+        {
+            try
+            {
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = uBusieness.getAll();
+
+                if (dataGridView1.Columns["Password"] != null)
+                    dataGridView1.Columns["Password"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
+                if (textBox2.Text != textBox3.Text)
+                {
+                    MessageBox.Show("Las contraseñas no coinciden.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 UsuarioEntity usuario = new UsuarioEntity();
                 TipoUsuarioEntity tipoUsuario = new TipoUsuarioEntity();
                 usuario.NombreUsuario = textBox1.Text;
@@ -56,50 +83,24 @@ namespace UI
                 usuario.Email = textBox7.Text;
                 tipoUsuario.IdTipo = 2;
                 usuario.TipoUsuario = tipoUsuario;
-                uBusieness.agregarUsuario(usuario, RepetirContraseña);
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";
-                textBox5.Text = "";
-                textBox6.Text = "";
-                textBox7.Text = "";
-                MessageBox.Show("Se ha agregado correctamente el usuario a la tabla");
+
+
+                uBusieness.agregarUsuario(usuario,RepetirContraseña);
                 Actualizar();
+
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+                textBox4.Clear();
+                textBox5.Clear();
+                textBox6.Clear();
+                textBox7.Clear();
+
+                MessageBox.Show("Usuario agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ABMUsuario_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                button3.Enabled = false;
-                Actualizar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        public void Actualizar()
-        {
-            try
-            {
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = uBusieness.getAll();
-            }
-            catch (Exception ex)
-            {
-                throw;
             }
         }
 
@@ -107,9 +108,20 @@ namespace UI
         {
             try
             {
-                uBusieness.eliminarUsuario(Convert.ToInt32(textBox8.Text));
+                if (!int.TryParse(textBox8.Text, out int idEliminar))
+                {
+                    MessageBox.Show("Ingrese un ID numérico válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var confirmar = MessageBox.Show($"¿Seguro que desea eliminar el usuario ID {idEliminar}?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmar != DialogResult.Yes) return;
+
+                uBusieness.eliminarUsuario(idEliminar);
                 Actualizar();
-                MessageBox.Show("Usuario Eliminado");
+                textBox8.Clear();
+                textBox13.Clear();
+                MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -121,10 +133,8 @@ namespace UI
         {
             try
             {
-
                 if (int.TryParse(textBox13.Text, out int idModificar))
                 {
-
                     UsuarioEntity usuarioAModificar = new UsuarioEntity
                     {
                         IdUsuario = idModificar,
@@ -162,12 +172,9 @@ namespace UI
         {
             try
             {
-
                 if (int.TryParse(textBox13.Text, out int idBuscado))
                 {
-
                     UsuarioEntity usuarioAModificar = uBusieness.buscarID(idBuscado);
-
 
                     if (usuarioAModificar != null)
                     {
@@ -195,12 +202,12 @@ namespace UI
             }
         }
 
-        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //USUARIO
+            //Entrada
             try
             {
-                ABMUsuario formAbrir = new ABMUsuario();
+                Form1 formAbrir = new Form1();
                 this.Hide();
                 formAbrir.Show();
                 formAbrir.FormClosed += (s, args) => this.Close();
@@ -211,9 +218,13 @@ namespace UI
             }
         }
 
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Actualizar();
+        }
+
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //Evento
             try
             {
                 ABMEvento formAbrir = new ABMEvento();
@@ -229,7 +240,6 @@ namespace UI
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //ESTADIO
             try
             {
                 ABMEstadio formAbrir = new ABMEstadio();
@@ -241,6 +251,15 @@ namespace UI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
 
         }
     }

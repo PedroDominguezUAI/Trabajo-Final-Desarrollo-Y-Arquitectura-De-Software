@@ -17,13 +17,15 @@ namespace UI
         public ABMEvento()
         {
             InitializeComponent();
-            UiTheme.AplicarEstiloNavLink(this);
         }
 
         private void ABMEvento_Load(object sender, EventArgs e)
         {
             try
             {
+                UiTheme.AplicarTema(this, "ABM Evento");
+                dataGridView1.CellClick += dataGridView1_CellClick;
+
                 List<EstadioEntity> estadios = eventoBusiness.ObtenerEstadios();
 
                 comboEstadioAgregar.DataSource = new List<EstadioEntity>(estadios);
@@ -42,28 +44,23 @@ namespace UI
             }
         }
 
+        private void dataGridView1_CellClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                string id = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()!;
+                txtIdEvento.Text = id;
+                txtIdEliminarEvento.Text = id;
+                btnBuscarEvento_Click(sender!, EventArgs.Empty);
+            }
+        }
+
         public void Actualizar()
         {
             try
             {
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = eventoBusiness.ObtenerTodos();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void linkVolver_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            //Entrada
-            try
-            {
-                Form1 formAbrir = new Form1();
-                this.Hide();
-                formAbrir.Show();
-                formAbrir.FormClosed += (s, args) => this.Close();
             }
             catch (Exception ex)
             {
@@ -78,7 +75,7 @@ namespace UI
                 EventoEntity evento = new EventoEntity();
                 evento.NombreEvento = txtEventoAgregar.Text;
                 evento.FechaEvento = dtpFechaAgregar.Value;
-                evento.Estadio = (EstadioEntity)comboEstadioAgregar.SelectedItem;
+                evento.Estadio = (EstadioEntity)comboEstadioAgregar.SelectedItem!;
 
                 eventoBusiness.Guardar(evento);
                 Actualizar();
@@ -107,9 +104,7 @@ namespace UI
                     txtNombreModificar.Text = evento.NombreEvento;
                     dateTimePicker1.Value = evento.FechaEvento;
                     if (evento.Estadio != null)
-                    {
                         comboBox1.SelectedValue = evento.Estadio.IdEstadio;
-                    }
                 }
                 else
                 {
@@ -136,7 +131,7 @@ namespace UI
                 evento.IdEvento = idModificar;
                 evento.NombreEvento = txtNombreModificar.Text;
                 evento.FechaEvento = dateTimePicker1.Value;
-                evento.Estadio = (EstadioEntity)comboBox1.SelectedItem;
+                evento.Estadio = (EstadioEntity)comboBox1.SelectedItem!;
 
                 eventoBusiness.Modificar(evento);
                 Actualizar();
@@ -158,10 +153,29 @@ namespace UI
                     return;
                 }
 
+                var confirmar = MessageBox.Show($"¿Seguro que desea eliminar el evento ID {idEliminar}?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmar != DialogResult.Yes) return;
+
                 eventoBusiness.Eliminar(idEliminar);
                 Actualizar();
                 txtIdEliminarEvento.Clear();
+                txtIdEvento.Clear();
                 MessageBox.Show("Evento eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkVolver_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Form1 formAbrir = new Form1();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
             }
             catch (Exception ex)
             {
@@ -171,7 +185,6 @@ namespace UI
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //ESTADIO
             try
             {
                 ABMEstadio formAbrir = new ABMEstadio();
@@ -187,7 +200,6 @@ namespace UI
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //USUARIO
             try
             {
                 ABMUsuario formAbrir = new ABMUsuario();
@@ -203,18 +215,7 @@ namespace UI
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //EVENTO
-            try
-            {
-                ABMEvento formAbrir = new ABMEvento();
-                this.Hide();
-                formAbrir.Show();
-                formAbrir.FormClosed += (s, args) => this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            Actualizar();
         }
     }
 }

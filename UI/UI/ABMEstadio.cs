@@ -7,7 +7,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UI
 {
@@ -16,100 +15,28 @@ namespace UI
         public ABMEstadio()
         {
             InitializeComponent();
-            UiTheme.AplicarEstiloNavLink(this);
         }
+
         EstadioBusiness eBusiness = new EstadioBusiness();
-
-        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            //ESTADIO
-            try
-            {
-                ABMEstadio formAbrir = new ABMEstadio();
-                this.Hide();
-                formAbrir.Show();
-                formAbrir.FormClosed += (s, args) => this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void linkVolver_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            //ENTRADA
-            try
-            {
-                Form1 formAbrir = new Form1();
-                this.Hide();
-                formAbrir.Show();
-                formAbrir.FormClosed += (s, args) => this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            //USUARIO
-            try
-            {
-                ABMUsuario formAbrir = new ABMUsuario();
-                this.Hide();
-                formAbrir.Show();
-                formAbrir.FormClosed += (s, args) => this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            //EVENTO
-            try
-            {
-                ABMEvento formAbrir = new ABMEvento();
-                this.Hide();
-                formAbrir.Show();
-                formAbrir.FormClosed += (s, args) => this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
         private void ABMEstadio_Load(object sender, EventArgs e)
         {
+            UiTheme.AplicarTema(this, "ABM Estadio");
+            dataGridView1.CellClick += dataGridView1_CellClick;
             Actualizar();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void dataGridView1_CellClick(object? sender, DataGridViewCellEventArgs e)
         {
-            //ALTA
-            try
+            if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells[0].Value != null)
             {
-                EstadioEntity estadioAlta = new EstadioEntity();
-                estadioAlta.Nombre = textBox1.Text;
-                estadioAlta.Direccion = textBox2.Text;
-                estadioAlta.Capacidad = Convert.ToInt32(textBox3.Text);
-                eBusiness.AgregarEstadio(estadioAlta);
-                MessageBox.Show("Estadio Dado de Alta");
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                Actualizar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
+                string id = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()!;
+                textBox13.Text = id;
+                textBox8.Text = id;
+                button4_Click(sender!, EventArgs.Empty);
             }
         }
+
         public void Actualizar()
         {
             try
@@ -119,19 +46,49 @@ namespace UI
             }
             catch (Exception ex)
             {
-                throw;
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EstadioEntity estadioAlta = new EstadioEntity();
+                estadioAlta.Nombre = textBox1.Text;
+                estadioAlta.Direccion = textBox2.Text;
+                estadioAlta.Capacidad = Convert.ToInt32(textBox3.Text);
+                eBusiness.AgregarEstadio(estadioAlta);
+                MessageBox.Show("Estadio agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+                Actualizar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Baja
             try
             {
-                eBusiness.EliminarID(Convert.ToInt32(textBox8.Text));
+                if (!int.TryParse(textBox8.Text, out int idEliminar))
+                {
+                    MessageBox.Show("Ingrese un ID numérico válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var confirmar = MessageBox.Show($"¿Seguro que desea eliminar el estadio ID {idEliminar}?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmar != DialogResult.Yes) return;
+
+                eBusiness.EliminarID(idEliminar);
                 Actualizar();
-                MessageBox.Show("Estadio Eliminado");
-                textBox8.Text = "";
+                textBox8.Clear();
+                textBox13.Clear();
+                MessageBox.Show("Estadio eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -141,22 +98,17 @@ namespace UI
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //Buscar para llenar
             try
             {
-
                 if (int.TryParse(textBox13.Text, out int idBuscado))
                 {
-
                     EstadioEntity estadioModificar = eBusiness.ObtenerIdEstadio(idBuscado);
-
 
                     if (estadioModificar != null)
                     {
                         textBox15.Text = estadioModificar.Nombre;
                         textBox14.Text = estadioModificar.Direccion;
                         textBox12.Text = estadioModificar.Capacidad.ToString();
-                      
                     }
                     else
                     {
@@ -176,20 +128,16 @@ namespace UI
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //Modificar
             try
             {
-
                 if (int.TryParse(textBox13.Text, out int idModificar))
                 {
-
                     EstadioEntity estadioModificar = new EstadioEntity
                     {
                         IdEstadio = idModificar,
                         Nombre = textBox15.Text,
                         Direccion = textBox14.Text,
                         Capacidad = Convert.ToInt32(textBox12.Text)
-                       
                     };
                     eBusiness.ModificarEstadio(estadioModificar);
                     MessageBox.Show("Estadio modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -203,6 +151,56 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show("Error al modificar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Actualizar();
+        }
+
+        private void linkVolver_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Form1 formAbrir = new Form1();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                ABMUsuario formAbrir = new ABMUsuario();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                ABMEvento formAbrir = new ABMEvento();
+                this.Hide();
+                formAbrir.Show();
+                formAbrir.FormClosed += (s, args) => this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
