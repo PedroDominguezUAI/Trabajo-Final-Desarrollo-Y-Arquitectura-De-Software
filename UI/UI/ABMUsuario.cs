@@ -26,6 +26,7 @@ namespace UI
             {
                 UiTheme.AplicarTema(this, "ABM Usuario");
                 dataGridView1.CellClick += dataGridView1_CellClick;
+                button3.Enabled = false;
                 Actualizar();
             }
             catch (Exception ex)
@@ -65,16 +66,11 @@ namespace UI
         {
             try
             {
-                if (textBox2.Text != textBox3.Text)
-                {
-                    MessageBox.Show("Las contraseñas no coinciden.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 UsuarioEntity usuario = new UsuarioEntity();
                 TipoUsuarioEntity tipoUsuario = new TipoUsuarioEntity();
                 usuario.NombreUsuario = textBox1.Text;
                 usuario.Password = textBox2.Text;
+                string RepetirContraseña = textBox3.Text;
                 usuario.Nombre = textBox4.Text;
                 usuario.Apellido = textBox5.Text;
                 usuario.Dni = textBox6.Text;
@@ -82,8 +78,7 @@ namespace UI
                 tipoUsuario.IdTipo = 2;
                 usuario.TipoUsuario = tipoUsuario;
 
-                uBusieness.agregarUsuario(usuario);
-                Actualizar();
+                uBusieness.agregarUsuario(usuario, RepetirContraseña);
 
                 textBox1.Clear();
                 textBox2.Clear();
@@ -93,7 +88,8 @@ namespace UI
                 textBox6.Clear();
                 textBox7.Clear();
 
-                MessageBox.Show("Usuario agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Se ha agregado correctamente el usuario a la tabla.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Actualizar();
             }
             catch (Exception ex)
             {
@@ -118,6 +114,7 @@ namespace UI
                 Actualizar();
                 textBox8.Clear();
                 textBox13.Clear();
+                button3.Enabled = false;
                 MessageBox.Show("Usuario eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -144,13 +141,14 @@ namespace UI
                     };
                     uBusieness.modificarUsuario(usuarioAModificar);
                     MessageBox.Show("Usuario modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    textBox15.Text = "";
-                    textBox14.Text = "";
-                    textBox12.Text = "";
-                    textBox9.Text = "";
-                    textBox11.Text = "";
-                    textBox10.Text = "";
-                    textBox13.Text = "";
+
+                    textBox15.Clear();
+                    textBox14.Clear();
+                    textBox12.Clear();
+                    textBox9.Clear();
+                    textBox11.Clear();
+                    textBox10.Clear();
+                    textBox13.Clear();
                     button3.Enabled = false;
                     Actualizar();
                 }
