@@ -144,6 +144,14 @@ namespace UI
                     };
                     uBusieness.modificarUsuario(usuarioAModificar);
                     MessageBox.Show("Usuario modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    textBox15.Text = "";
+                    textBox14.Text = "";
+                    textBox12.Text = "";
+                    textBox9.Text = "";
+                    textBox11.Text = "";
+                    textBox10.Text = "";
+                    textBox13.Text = "";
+                    button3.Enabled = false;
                     Actualizar();
                 }
                 else
@@ -173,6 +181,7 @@ namespace UI
                         textBox9.Text = usuarioAModificar.Email;
                         textBox11.Text = usuarioAModificar.Apellido;
                         textBox10.Text = usuarioAModificar.Dni;
+                        button3.Enabled = true;
                     }
                     else
                     {
