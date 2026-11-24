@@ -28,6 +28,10 @@ namespace UI
                 UiTheme.AplicarTema(this, "ABM Usuario");
                 dataGridView1.CellClick += dataGridView1_CellClick;
                 Actualizar();
+                if (dataGridView1.Columns["TipoUsuario"] != null)
+                {
+                    dataGridView1.Columns["TipoUsuario"].Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -100,7 +104,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -108,7 +112,7 @@ namespace UI
         {
             try
             {
-                if (!int.TryParse(textBox8.Text, out int idEliminar))
+                if (!int.TryParse(textBox8.Text, out int idEliminar) || Convert.ToInt32(textBox8.Text) < 0)
                 {
                     MessageBox.Show("Ingrese un ID numérico válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -125,7 +129,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -147,13 +151,14 @@ namespace UI
                     };
                     uBusieness.modificarUsuario(usuarioAModificar);
                     MessageBox.Show("Usuario modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    textBox15.Text = "";
-                    textBox14.Text = "";
-                    textBox12.Text = "";
-                    textBox9.Text = "";
-                    textBox11.Text = "";
-                    textBox10.Text = "";
-                    textBox13.Text = "";
+                    textBox15.Clear();
+                    textBox14.Clear();
+                    textBox12.Clear();
+                    textBox9.Clear();
+                    textBox11.Clear();
+                    textBox10.Clear();
+                    textBox13.Clear();
+                    textBox13.ReadOnly = false;
                     button3.Enabled = false;
                     Actualizar();
                 }
@@ -185,6 +190,7 @@ namespace UI
                         textBox11.Text = usuarioAModificar.Apellido;
                         textBox10.Text = usuarioAModificar.Dni;
                         button3.Enabled = true;
+                        textBox13.ReadOnly = true;
                     }
                     else
                     {
@@ -234,7 +240,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

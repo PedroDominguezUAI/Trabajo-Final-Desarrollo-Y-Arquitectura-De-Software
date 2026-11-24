@@ -36,6 +36,8 @@ namespace UI
                 comboBox1.DisplayMember = "Nombre";
                 comboBox1.ValueMember = "IdEstadio";
 
+                button1.Enabled = false;
+
                 Actualizar();
             }
             catch (Exception ex)
@@ -105,6 +107,8 @@ namespace UI
                     dateTimePicker1.Value = evento.FechaEvento;
                     if (evento.Estadio != null)
                         comboBox1.SelectedValue = evento.Estadio.IdEstadio;
+                    txtIdEvento.ReadOnly = true;
+                    button1.Enabled = true;
                 }
                 else
                 {
@@ -135,6 +139,10 @@ namespace UI
 
                 eventoBusiness.Modificar(evento);
                 Actualizar();
+                button1.Enabled = false;
+                txtNombreModificar.Clear();
+                txtIdEvento.Clear();
+                txtIdEvento.ReadOnly = false;
                 MessageBox.Show("Evento modificado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

@@ -29,6 +29,102 @@ namespace DAL
                 }
             }
 
+        public bool EncontrarEventos(int idEstadio)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool eventoEncontrado = db.Evento.Any(E => E.IdEstadio == idEstadio);
+                    return eventoEncontrado;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool ValidarCambios(EstadioEntity estadio)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool ValidarCambios = db.Estadio.Any(E => E.IdEstadio == estadio.IdEstadio && E.Nombre == estadio.Nombre && E.Direccion == estadio.Direccion && E.Capacidad == estadio.Capacidad);
+                    return ValidarCambios;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        
+        public bool DetectarEstadioDireccion(EstadioEntity estadio)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool EstadioDireccionReplicado = db.Estadio.Any(E => E.Direccion == estadio.Direccion);
+                    return EstadioDireccionReplicado;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        
+        public bool DetectarEstadioDireccionModificar(EstadioEntity estadio)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool EstadioDireccionReplicado = db.Estadio.Any(E => E.IdEstadio != estadio.IdEstadio && E.Direccion == estadio.Direccion);
+                    return EstadioDireccionReplicado;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool DetectarEstadioNombreModificar(EstadioEntity estadio)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool EstadioNombreReplicado = db.Estadio.Any(E =>E.IdEstadio != estadio.IdEstadio && E.Nombre == estadio.Nombre);
+                    return EstadioNombreReplicado;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool DetectarEstadioNombre(EstadioEntity estadio)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool EstadioNombreReplicado = db.Estadio.Any(E => E.Nombre == estadio.Nombre);
+                    return EstadioNombreReplicado;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
             public void AgregarEstadio(EstadioEntity estadio)
             {
                 try
@@ -55,11 +151,11 @@ namespace DAL
                         Estadio? estadio = db.Estadio.FirstOrDefault(E => E.IdEstadio == ID);
                         if (estadio != null)
                         {
-                            return true;
+                            return false;
                         }
                         else
                         {
-                            return false;
+                            return true;
                         }
                     }
                 }

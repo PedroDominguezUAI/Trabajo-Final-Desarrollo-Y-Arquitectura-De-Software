@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Entity;
+using Entity.EFModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,7 @@ namespace UI
             UiTheme.AplicarTema(this, "ABM Estadio");
             dataGridView1.CellClick += dataGridView1_CellClick;
             Actualizar();
+            button3.Enabled = false;
         }
 
         private void dataGridView1_CellClick(object? sender, DataGridViewCellEventArgs e)
@@ -57,6 +59,10 @@ namespace UI
                 EstadioEntity estadioAlta = new EstadioEntity();
                 estadioAlta.Nombre = textBox1.Text;
                 estadioAlta.Direccion = textBox2.Text;
+                if (!int.TryParse(textBox3.Text, out int capacidad))
+                {
+                    throw new Exception("La capacidad debe ser numérica.");
+                }
                 estadioAlta.Capacidad = Convert.ToInt32(textBox3.Text);
                 eBusiness.AgregarEstadio(estadioAlta);
                 MessageBox.Show("Estadio agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -109,6 +115,8 @@ namespace UI
                         textBox15.Text = estadioModificar.Nombre;
                         textBox14.Text = estadioModificar.Direccion;
                         textBox12.Text = estadioModificar.Capacidad.ToString();
+                        textBox13.ReadOnly = true;
+                        button3.Enabled = true;
                     }
                     else
                     {
@@ -142,6 +150,12 @@ namespace UI
                     eBusiness.ModificarEstadio(estadioModificar);
                     MessageBox.Show("Estadio modificado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Actualizar();
+                    textBox12.Clear();
+                    textBox13.Clear();
+                    textBox14.Clear();
+                    textBox15.Clear();
+                    textBox13.ReadOnly = false;
+                    button3.Enabled = false;
                 }
                 else
                 {

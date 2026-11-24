@@ -12,6 +12,23 @@ namespace DAL
 {
     public class UsuarioDAO
     {
+        public bool EntradasVIgentes(int id)
+        {
+            try
+            {
+                using (var DB = new ModeloParcialContext())
+                {
+                    DateTime NOW = DateTime.Now;
+                    bool TieneEntradasVigentes = DB.Entrada.Any(E => E.IdUsuario == id && E.IdEventoNavigation.FechaEvento >= NOW);
+                    return TieneEntradasVigentes;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public bool MismoEmail(string Email)
         {
             try

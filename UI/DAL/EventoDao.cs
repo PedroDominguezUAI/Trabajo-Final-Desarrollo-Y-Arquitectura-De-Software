@@ -3,8 +3,10 @@ using Entity;
 using Entity.EFModel;
 using Mapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Text;
 
 namespace DAL
@@ -22,6 +24,83 @@ namespace DAL
                         .ToList();
 
                     return EventoMapper.Map(eventos);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool DuplicidadEventos(EventoEntity evento)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool Duplicidad = db.Evento.Any(E => E.NombreEvento == evento.NombreEvento && E.FechaEvento.Date == evento.FechaEvento.Date);
+                    return Duplicidad;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool SinCambios(EventoEntity evento)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    var actual = db.Evento.FirstOrDefault(e => e.IdEvento == evento.IdEvento);
+                    if (actual == null)
+                    {
+                        return false;
+                    }
+
+                    string nombreActual = (actual.NombreEvento ?? string.Empty).Trim().ToLower();
+                    string nombreNuevo = (evento.NombreEvento ?? string.Empty).Trim().ToLower();
+
+                    bool mismoNombre = nombreActual == nombreNuevo;
+                    bool mismaFecha = actual.FechaEvento == evento.FechaEvento;
+                    bool mismoEstadio = actual.IdEstadio == evento.Estadio.IdEstadio;
+
+                    return mismoNombre && mismaFecha && mismoEstadio;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool DuplicidadEventosModificar(EventoEntity evento)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool Duplicidad = db.Evento.Any(E => E.IdEvento != evento.IdEvento && E.NombreEvento == evento.NombreEvento && E.FechaEvento.Date == evento.FechaEvento.Date &&
+                    E.FechaEvento.Hour == evento.FechaEvento.Hour &&E.FechaEvento.Minute == evento.FechaEvento.Minute);
+                    return Duplicidad;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool ValidarEntradasVendidas(EventoEntity evento)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool validarEntradas = db.Entrada.Any(E => E.IdEvento == evento.IdEvento);
+                    return validarEntradas;
                 }
             }
             catch (Exception ex)
@@ -50,6 +129,21 @@ namespace DAL
             catch (Exception ex) { throw; }
         }
 
+        public bool VerificarEntradasEliminar(EventoEntity evento)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    return db.Entrada.Any(e => e.IdEvento == evento.IdEvento);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void Guardar(EventoEntity eventoEntity)
         {
             try
@@ -66,6 +160,50 @@ namespace DAL
                 throw;
             }
         }
+
+        public bool ValidarFranjaHoraria(EventoEntity evento)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    int duracionHoras = 24;
+                    DateTime LimiteInferior = evento.FechaEvento.AddHours(-duracionHoras);
+                    DateTime LimiteSuperior = evento.FechaEvento.AddHours(duracionHoras);
+                    bool ExisteSolapamiento = db.Evento.Any(E => E.IdEstadio == evento.Estadio.IdEstadio && E.FechaEvento > LimiteInferior && E.FechaEvento < LimiteSuperior);
+                    return ExisteSolapamiento;
+                }
+            }catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        
+        public bool ValidarFranjaHorariaModificar(EventoEntity evento)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    int duracionHoras = 4;
+                    DateTime limiteInferior = evento.FechaEvento.AddHours(-duracionHoras);
+                    DateTime limiteSuperior = evento.FechaEvento.AddHours(duracionHoras);
+
+                    bool existeSolapamiento = db.Evento.Any(e =>
+                        e.IdEvento != evento.IdEvento &&
+                        e.IdEstadio == evento.Estadio.IdEstadio &&
+                        e.FechaEvento > limiteInferior &&
+                        e.FechaEvento < limiteSuperior);
+
+                    return existeSolapamiento;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         public void Modificar(EventoEntity eventoEntity)
         {

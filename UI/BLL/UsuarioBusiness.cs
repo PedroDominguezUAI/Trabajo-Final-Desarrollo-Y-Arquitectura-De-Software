@@ -110,10 +110,17 @@ namespace BLL
         {
             try
             {
-                uDAO.buscarID(id);
-                if(id  == null)
+                if (string.IsNullOrWhiteSpace(Convert.ToString(id)))
                 {
                     throw new Exception("ID Invalido");
+                }
+                if (uDAO.buscarID(id) == null)
+                {
+                    throw new Exception("ID Invalido, no se puede borrar un usuario inexistente");
+                }
+                if (uDAO.EntradasVIgentes(id))
+                {
+                    throw new Exception("ID Invalido, no se permite eliminar usuarios con entradas vigentes");
                 }
                 uDAO.eliminarUsuario(id);
 
