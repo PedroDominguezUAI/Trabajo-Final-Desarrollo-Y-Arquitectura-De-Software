@@ -27,6 +27,10 @@ namespace BLL
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
+                    if (string.IsNullOrWhiteSpace(entrada.Asiento) || string.IsNullOrWhiteSpace(Convert.ToString(entrada.Precio)))
+                    {
+                        throw new Exception("Debes rellenar los valores para poder agregar una entrada");
+                    }
                     if (entrada.Precio < 10)
                     {
                         throw new Exception("El precio debe ser mayor a 10 dolares");
@@ -38,6 +42,10 @@ namespace BLL
                     if (entrada.Asiento.Length > 6)
                     {
                         throw new Exception("Los caracteres maximos para un asiento son 6");
+                    }
+                    if (eDao.DuplicidadAsientoAgregar(entrada))
+                    {
+                        throw new Exception("El asiento de este evento ya esta ocupado");
                     }
                     entrada.FechaAsignacion = DateTime.Now;
                     eDao.AgregarEntrada(entrada);
@@ -75,6 +83,14 @@ namespace BLL
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
+                    if (string.IsNullOrWhiteSpace(entrada.Asiento) || string.IsNullOrWhiteSpace(Convert.ToString(entrada.Precio)))
+                    {
+                        throw new Exception("Debes rellenar los valores para poder agregar una entrada");
+                    }
+                    if (eDao.CambiosRealizado(entrada))
+                    {
+                        throw new Exception("No has realizado ningun cambio");
+                    }
                     if (entrada.Precio < 10)
                     {
                         throw new Exception("El precio debe ser mayor a 10 dolares");
@@ -86,6 +102,10 @@ namespace BLL
                     if (entrada.Asiento.Length > 6)
                     {
                         throw new Exception("Los caracteres maximos para un asiento son 6");
+                    }
+                    if (eDao.DuplicidadAsientoAgregarModificar(entrada))
+                    {
+                        throw new Exception("El asiento de este evento ya esta ocupado");
                     }
                     eDao.ModificarEntrada(entrada);
                     scope.Complete();

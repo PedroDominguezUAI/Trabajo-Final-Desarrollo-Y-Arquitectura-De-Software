@@ -1,6 +1,7 @@
 using BLL;
 using Entity;
 using Entity.EFModel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UI
 {
@@ -41,6 +42,8 @@ namespace UI
 
                 comboSectorAgregar.SelectedIndex = 0;
                 comboSectorModificar.SelectedIndex = 0;
+
+                btnModificarEntrada.Enabled = false;
                 Actualizar();
             }
             catch (Exception ex)
@@ -97,6 +100,10 @@ namespace UI
                 entrada.Usuario = usuarioBusiness.buscarID(Convert.ToInt32(comboUsuarioAgregar.SelectedValue));
                 entrada.Sector = comboSectorAgregar.Text;
                 entrada.Asiento = txtAsientoAgregar.Text;
+                if (!int.TryParse(txtPrecioAgregar.Text, out int Precio))
+                {
+                    throw new Exception("El precio debe ser un valor numerico");
+                }
                 entrada.Precio = Convert.ToDecimal(txtPrecioAgregar.Text);
                 entradaBusiness.AgregarEntradaBLL(entrada);
                 Actualizar();
@@ -106,7 +113,7 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -114,7 +121,7 @@ namespace UI
         {
             try
             {
-                if (!int.TryParse(txtIdModificar.Text, out int IdSearch))
+                if (!int.TryParse(txtIdModificar.Text, out int IdSearch) || Convert.ToInt32(txtIdModificar.Text) < 0)
                 {
                     MessageBox.Show("Ingrese un ID numérico válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -138,10 +145,12 @@ namespace UI
                 comboSectorModificar.Text = entrada.Sector;
                 txtAsientoModificar.Text = entrada.Asiento;
                 txtPrecioModificar.Text = Convert.ToString(entrada.Precio);
+                txtIdModificar.ReadOnly = true;
+                btnModificarEntrada.Enabled = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -164,11 +173,16 @@ namespace UI
                 entrada.Precio = Convert.ToDecimal(txtPrecioModificar.Text);
                 entradaBusiness.ModificarEntradaBLL(entrada);
                 Actualizar();
+                txtAsientoModificar.Clear();
+                txtIdModificar.Clear();
+                txtPrecioModificar.Clear();
+                btnModificarEntrada.Enabled = false;
+                txtIdModificar.ReadOnly = false;
                 MessageBox.Show("Entrada actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -189,6 +203,7 @@ namespace UI
                 Actualizar();
                 txtIdEliminar.Clear();
                 txtIdModificar.Clear();
+                
                 MessageBox.Show("Entrada eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

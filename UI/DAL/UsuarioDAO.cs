@@ -52,6 +52,22 @@ namespace DAL
             }
         }
 
+        public bool SinModificarValores(UsuarioEntity usuario)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool sinModificar = db.Usuario.Any(U => U.IdUsuario == usuario.IdUsuario && U.Apellido == usuario.Apellido && U.Dni == usuario.Dni && U.Email == usuario.Email && U.Nombre == usuario.Nombre && U.NombreUsuario == usuario.NombreUsuario && U.Password == usuario.Password);
+                    return sinModificar;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public bool DetectarNombreUsuarioConid(UsuarioEntity usuario)
         {
             try

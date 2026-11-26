@@ -12,7 +12,52 @@ namespace DAL
     public class EntradaDAO
     {
 
+        public bool CambiosRealizado(EntradaEntity entrada)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool igual = db.Entrada.Any(E => E.IdEntrada == entrada.IdEntrada && E.Asiento == entrada.Asiento && E.Precio == entrada.Precio && E.Sector == entrada.Sector && E.IdEvento == entrada.Evento.IdEvento && E.IdUsuario == entrada.Usuario.IdUsuario);
+                    return igual;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
+        public bool DuplicidadAsientoAgregar(EntradaEntity entrada)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool DuplicidadAsientos = db.Entrada.Any(E => E.Asiento == entrada.Asiento && E.IdEvento == entrada.Evento.IdEvento && E.Sector == entrada.Sector);
+                    return DuplicidadAsientos;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public bool DuplicidadAsientoAgregarModificar(EntradaEntity entrada)
+        {
+            try
+            {
+                using (var db = new ModeloParcialContext())
+                {
+                    bool DuplicidadAsientos = db.Entrada.Any(E => E.IdEntrada != entrada.IdEntrada &&E.Asiento == entrada.Asiento && E.IdEvento == entrada.Evento.IdEvento && E.Sector == entrada.Sector);
+                    return DuplicidadAsientos;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public List<Entity.EntradaEntity> getAll()
         {
             try

@@ -44,9 +44,8 @@
             panel1.Controls.Add(linkCerrarSesion);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1463, 60);
+            panel1.Size = new Size(1273, 45);
             panel1.TabIndex = 0;
             // 
             // lblBienvenida
@@ -55,9 +54,9 @@
             lblBienvenida.BackColor = Color.Transparent;
             lblBienvenida.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             lblBienvenida.ForeColor = Color.FromArgb(56, 189, 248);
-            lblBienvenida.Location = new Point(27, 17);
+            lblBienvenida.Location = new Point(24, 13);
             lblBienvenida.Name = "lblBienvenida";
-            lblBienvenida.Size = new Size(202, 25);
+            lblBienvenida.Size = new Size(160, 19);
             lblBienvenida.TabIndex = 0;
             lblBienvenida.Text = "Portal de Cliente · SAC";
             // 
@@ -67,9 +66,9 @@
             linkCerrarSesion.AutoSize = true;
             linkCerrarSesion.BackColor = Color.Transparent;
             linkCerrarSesion.LinkColor = Color.FromArgb(226, 232, 240);
-            linkCerrarSesion.Location = new Point(1338, 19);
+            linkCerrarSesion.Location = new Point(1164, 14);
             linkCerrarSesion.Name = "linkCerrarSesion";
-            linkCerrarSesion.Size = new Size(96, 20);
+            linkCerrarSesion.Size = new Size(76, 15);
             linkCerrarSesion.TabIndex = 1;
             linkCerrarSesion.TabStop = true;
             linkCerrarSesion.Text = "Cerrar Sesión";
@@ -79,9 +78,9 @@
             // 
             lblTituloCompra.AutoSize = true;
             lblTituloCompra.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            lblTituloCompra.Location = new Point(27, 100);
+            lblTituloCompra.Location = new Point(949, 61);
             lblTituloCompra.Name = "lblTituloCompra";
-            lblTituloCompra.Size = new Size(214, 35);
+            lblTituloCompra.Size = new Size(172, 28);
             lblTituloCompra.TabIndex = 1;
             lblTituloCompra.Text = "Comprar Entrada";
             lblTituloCompra.Visible = false;
@@ -89,9 +88,9 @@
             // lblEvento
             // 
             lblEvento.AutoSize = true;
-            lblEvento.Location = new Point(27, 157);
+            lblEvento.Location = new Point(949, 104);
             lblEvento.Name = "lblEvento";
-            lblEvento.Size = new Size(137, 20);
+            lblEvento.Size = new Size(109, 15);
             lblEvento.TabIndex = 2;
             lblEvento.Text = "Seleccionar Evento:";
             lblEvento.Visible = false;
@@ -100,10 +99,9 @@
             // 
             comboEvento.DropDownStyle = ComboBoxStyle.DropDownList;
             comboEvento.FormattingEnabled = true;
-            comboEvento.Location = new Point(27, 184);
-            comboEvento.Margin = new Padding(3, 4, 3, 4);
+            comboEvento.Location = new Point(949, 124);
             comboEvento.Name = "comboEvento";
-            comboEvento.Size = new Size(331, 28);
+            comboEvento.Size = new Size(290, 23);
             comboEvento.TabIndex = 3;
             comboEvento.Visible = false;
             comboEvento.SelectedIndexChanged += comboEvento_SelectedIndexChanged;
@@ -112,9 +110,9 @@
             // 
             lblInfoEvento.AutoSize = true;
             lblInfoEvento.ForeColor = Color.FromArgb(71, 85, 105);
-            lblInfoEvento.Location = new Point(27, 224);
+            lblInfoEvento.Location = new Point(949, 154);
             lblInfoEvento.Name = "lblInfoEvento";
-            lblInfoEvento.Size = new Size(134, 20);
+            lblInfoEvento.Size = new Size(107, 15);
             lblInfoEvento.TabIndex = 4;
             lblInfoEvento.Text = "Estadio: - | Fecha: -";
             lblInfoEvento.Visible = false;
@@ -122,9 +120,9 @@
             // lblSector
             // 
             lblSector.AutoSize = true;
-            lblSector.Location = new Point(27, 272);
+            lblSector.Location = new Point(949, 190);
             lblSector.Name = "lblSector";
-            lblSector.Size = new Size(134, 20);
+            lblSector.Size = new Size(106, 15);
             lblSector.TabIndex = 5;
             lblSector.Text = "Seleccionar Sector:";
             lblSector.Visible = false;
@@ -134,10 +132,9 @@
             comboSector.DropDownStyle = ComboBoxStyle.DropDownList;
             comboSector.FormattingEnabled = true;
             comboSector.Items.AddRange(new object[] { "Campo", "Platea baja sur", "Platea baja norte", "Platea media sur", "Platea media norte", "Platea alta sur", "Platea alta norte" });
-            comboSector.Location = new Point(27, 299);
-            comboSector.Margin = new Padding(3, 4, 3, 4);
+            comboSector.Location = new Point(949, 210);
             comboSector.Name = "comboSector";
-            comboSector.Size = new Size(331, 28);
+            comboSector.Size = new Size(290, 23);
             comboSector.TabIndex = 6;
             comboSector.Visible = false;
             comboSector.SelectedIndexChanged += comboSector_SelectedIndexChanged;
@@ -145,49 +142,46 @@
             // lblAsiento
             // 
             lblAsiento.AutoSize = true;
-            lblAsiento.Location = new Point(27, 355);
+            lblAsiento.Location = new Point(949, 252);
             lblAsiento.Name = "lblAsiento";
-            lblAsiento.Size = new Size(123, 20);
+            lblAsiento.Size = new Size(97, 15);
             lblAsiento.TabIndex = 7;
             lblAsiento.Text = "Asiento deseado:";
             lblAsiento.Visible = false;
             // 
             // txtAsiento
             // 
-            txtAsiento.Location = new Point(27, 381);
-            txtAsiento.Margin = new Padding(3, 4, 3, 4);
+            txtAsiento.Location = new Point(949, 272);
             txtAsiento.Name = "txtAsiento";
             txtAsiento.PlaceholderText = "Ej: A-15";
-            txtAsiento.Size = new Size(331, 27);
+            txtAsiento.Size = new Size(290, 23);
             txtAsiento.TabIndex = 8;
             txtAsiento.Visible = false;
             // 
             // lblPrecio
             // 
             lblPrecio.AutoSize = true;
-            lblPrecio.Location = new Point(27, 437);
+            lblPrecio.Location = new Point(949, 314);
             lblPrecio.Name = "lblPrecio";
-            lblPrecio.Size = new Size(145, 20);
+            lblPrecio.Size = new Size(114, 15);
             lblPrecio.TabIndex = 9;
             lblPrecio.Text = "Precio de la entrada:";
             lblPrecio.Visible = false;
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(27, 464);
-            txtPrecio.Margin = new Padding(3, 4, 3, 4);
+            txtPrecio.Location = new Point(949, 334);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.ReadOnly = true;
-            txtPrecio.Size = new Size(331, 27);
+            txtPrecio.Size = new Size(290, 23);
             txtPrecio.TabIndex = 10;
             txtPrecio.Visible = false;
             // 
             // btnComprar
             // 
-            btnComprar.Location = new Point(27, 540);
-            btnComprar.Margin = new Padding(3, 4, 3, 4);
+            btnComprar.Location = new Point(949, 391);
             btnComprar.Name = "btnComprar";
-            btnComprar.Size = new Size(331, 59);
+            btnComprar.Size = new Size(290, 44);
             btnComprar.TabIndex = 11;
             btnComprar.Text = "Agregar / Comprar Entrada";
             btnComprar.UseVisualStyleBackColor = true;
@@ -198,28 +192,27 @@
             // 
             lblTituloTabla.AutoSize = true;
             lblTituloTabla.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            lblTituloTabla.Location = new Point(411, 100);
+            lblTituloTabla.Location = new Point(24, 61);
             lblTituloTabla.Name = "lblTituloTabla";
-            lblTituloTabla.Size = new Size(164, 35);
+            lblTituloTabla.Size = new Size(134, 28);
             lblTituloTabla.TabIndex = 12;
             lblTituloTabla.Text = "Mis Entradas";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(411, 157);
-            dataGridView1.Margin = new Padding(3, 4, 3, 4);
+            dataGridView1.Location = new Point(24, 104);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1023, 713);
+            dataGridView1.Size = new Size(895, 535);
             dataGridView1.TabIndex = 13;
             // 
             // PantallaCliente
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1463, 907);
+            ClientSize = new Size(1273, 666);
             Controls.Add(dataGridView1);
             Controls.Add(lblTituloTabla);
             Controls.Add(btnComprar);
@@ -234,7 +227,6 @@
             Controls.Add(lblEvento);
             Controls.Add(lblTituloCompra);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "PantallaCliente";
             Text = "PantallaCliente";
             Load += PantallaCliente_Load;
